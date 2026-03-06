@@ -1,0 +1,340 @@
+/* ============================================
+   SARDA HOSPITAL — Main JavaScript
+   Navigation, Form, Carousel, Slideshow,
+   Scroll Animations
+   ============================================ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    // ===== MOBILE NAVIGATION =====
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    if (navToggle && navLinks) {
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('open');
+            navLinks.classList.toggle('open');
+            document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+        });
+
+        // Close menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('open');
+                navLinks.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+    }
+
+    // ===== NAVBAR SCROLL EFFECT =====
+    const navbar = document.getElementById('navbar');
+    const handleScroll = () => {
+        if (navbar) {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        }
+        updateActiveNav();
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // ===== ACTIVE NAV LINK HIGHLIGHTING =====
+    function updateActiveNav() {
+        const sections = document.querySelectorAll('section[id]');
+        const scrollPos = window.scrollY + 150;
+
+        sections.forEach(section => {
+            const top = section.offsetTop;
+            const height = section.offsetHeight;
+            const id = section.getAttribute('id');
+            const link = navLinks?.querySelector(`a[href="#${id}"]`);
+
+            if (link) {
+                if (scrollPos >= top && scrollPos < top + height) {
+                    navLinks.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            }
+        });
+    }
+
+    // ===== HOSPITAL SLIDESHOW =====
+    const slides = document.querySelectorAll('.slideshow__slide');
+    const dotsContainer = document.getElementById('slideshow-dots');
+    let currentSlide = 0;
+    let slideshowTimer;
+
+    if (slides.length > 0 && dotsContainer) {
+        // Create dots
+        slides.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.classList.add('slideshow__dot');
+            if (i === 0) dot.classList.add('active');
+            dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        });
+
+        function goToSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            dotsContainer.children[currentSlide].classList.remove('active');
+            currentSlide = index;
+            slides[currentSlide].classList.add('active');
+            dotsContainer.children[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            goToSlide((currentSlide + 1) % slides.length);
+        }
+
+        // Auto-advance every 4 seconds
+        slideshowTimer = setInterval(nextSlide, 4000);
+
+        // Pause on hover
+        const wrapper = document.querySelector('.slideshow__wrapper');
+        if (wrapper) {
+            wrapper.addEventListener('mouseenter', () => clearInterval(slideshowTimer));
+            wrapper.addEventListener('mouseleave', () => {
+                slideshowTimer = setInterval(nextSlide, 4000);
+            });
+        }
+    }
+
+    // ===== REVIEWS CAROUSEL =====
+    const track = document.getElementById('reviews-track');
+    const prevBtn = document.getElementById('review-prev');
+    const nextBtn = document.getElementById('review-next');
+    const reviewDotsContainer = document.getElementById('review-dots');
+    const reviewCards = document.querySelectorAll('.review-card');
+    let currentReview = 0;
+    let reviewTimer;
+
+    if (track && reviewCards.length > 0 && reviewDotsContainer) {
+        // Create dots
+        reviewCards.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.classList.add('reviews__dot');
+            if (i === 0) dot.classList.add('active');
+            dot.setAttribute('aria-label', `Go to review ${i + 1}`);
+            dot.addEventListener('click', () => goToReview(i));
+            reviewDotsContainer.appendChild(dot);
+        });
+
+        function goToReview(index) {
+            reviewDotsContainer.children[currentReview]?.classList.remove('active');
+            currentReview = index;
+            track.style.transform = `translateX(-${currentReview * 100}%)`;
+            reviewDotsContainer.children[currentReview]?.classList.add('active');
+        }
+
+        function nextReview() {
+            goToReview((currentReview + 1) % reviewCards.length);
+        }
+
+        function prevReview() {
+            goToReview((currentReview - 1 + reviewCards.length) % reviewCards.length);
+        }
+
+        if (prevBtn) prevBtn.addEventListener('click', () => { prevReview(); resetReviewTimer(); });
+        if (nextBtn) nextBtn.addEventListener('click', () => { nextReview(); resetReviewTimer(); });
+
+        // Auto-advance every 5 seconds
+        reviewTimer = setInterval(nextReview, 5000);
+
+        function resetReviewTimer() {
+            clearInterval(reviewTimer);
+            reviewTimer = setInterval(nextReview, 5000);
+        }
+
+        // Pause on hover
+        const carousel = document.getElementById('reviews-carousel');
+        if (carousel) {
+            carousel.addEventListener('mouseenter', () => clearInterval(reviewTimer));
+            carousel.addEventListener('mouseleave', () => {
+                reviewTimer = setInterval(nextReview, 5000);
+            });
+        }
+
+        // Swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+        if (carousel) {
+            carousel.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+            carousel.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) {
+                    diff > 0 ? nextReview() : prevReview();
+                    resetReviewTimer();
+                }
+            }, { passive: true });
+        }
+    }
+
+    // ===== APPOINTMENT FORM =====
+    const form = document.getElementById('appointment-form');
+    const confirmation = document.getElementById('form-confirmation');
+
+    if (form) {
+        // Set minimum date to today
+        const dateInput = document.getElementById('preferred-date');
+        if (dateInput) {
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.setAttribute('min', today);
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('patient-name').value.trim();
+            const phone = document.getElementById('patient-phone').value.trim();
+            const doctor = document.getElementById('preferred-doctor').value;
+            const reason = document.getElementById('visit-reason').value;
+            const date = document.getElementById('preferred-date').value;
+            const time = document.getElementById('preferred-time').value;
+            const message = document.getElementById('patient-message').value.trim();
+
+            // Build WhatsApp message
+            let waMessage = `Hello Sarda Hospital,\nI would like to book an appointment.\n\n`;
+            waMessage += `Name: ${name}\n`;
+            waMessage += `Phone: ${phone}\n`;
+            waMessage += `Doctor: ${doctor}\n`;
+            waMessage += `Reason: ${reason}\n`;
+            waMessage += `Date: ${date}\n`;
+            waMessage += `Time: ${time}\n`;
+            if (message) waMessage += `Message: ${message}\n`;
+
+            const waURL = `https://wa.me/919503062999?text=${encodeURIComponent(waMessage)}`;
+
+            // 1. Open WhatsApp
+            window.open(waURL, '_blank');
+
+            // 2. Send to Google Sheets (if webhook URL is configured)
+            sendToGoogleSheets({ name, phone, doctor, reason, date, time, message });
+
+            // 3. Send email notification (if configured)
+            sendEmailNotification({ name, phone, doctor, reason, date, time, message });
+
+            // 4. Show confirmation
+            form.style.display = 'none';
+            if (confirmation) confirmation.classList.add('show');
+
+            // Reset after 10 seconds
+            setTimeout(() => {
+                form.reset();
+                form.style.display = '';
+                if (confirmation) confirmation.classList.remove('show');
+            }, 10000);
+        });
+    }
+
+    // ===== GOOGLE SHEETS INTEGRATION =====
+    // TODO: Replace with your Google Apps Script Web App URL
+    // Follow DEPLOYMENT_GUIDE.md for setup instructions
+    const GOOGLE_SHEETS_URL = '';
+
+    function sendToGoogleSheets(data) {
+        if (!GOOGLE_SHEETS_URL) return;
+
+        fetch(GOOGLE_SHEETS_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                timestamp: new Date().toISOString(),
+                ...data
+            })
+        }).catch(err => console.log('Sheets logging:', err));
+    }
+
+    // ===== EMAIL NOTIFICATION =====
+    // TODO: Replace with your EmailJS or Formspree endpoint
+    // Follow DEPLOYMENT_GUIDE.md for setup instructions
+    const EMAIL_ENDPOINT = '';
+
+    function sendEmailNotification(data) {
+        if (!EMAIL_ENDPOINT) return;
+
+        fetch(EMAIL_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                to: 'shreyassarda7@gmail.com',
+                subject: `New Appointment Request — ${data.name}`,
+                ...data
+            })
+        }).catch(err => console.log('Email notification:', err));
+    }
+
+    // ===== SCROLL REVEAL ANIMATIONS =====
+    const revealElements = document.querySelectorAll('.reveal, .reveal-stagger');
+
+    if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+    } else {
+        // Fallback: show everything
+        revealElements.forEach(el => el.classList.add('visible'));
+    }
+
+    // ===== COUNTER ANIMATION (Trust Strip) =====
+    const counters = document.querySelectorAll('[data-count]');
+
+    if (counters.length > 0 && 'IntersectionObserver' in window) {
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => counterObserver.observe(counter));
+    }
+
+    function animateCounter(el) {
+        const target = parseInt(el.getAttribute('data-count'));
+        const suffix = el.textContent.includes('+') ? '+' : '';
+        const duration = 2000;
+        const startTime = performance.now();
+
+        function update(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            // Ease out cubic
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.round(eased * target);
+
+            el.textContent = current.toLocaleString() + suffix;
+
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            }
+        }
+
+        requestAnimationFrame(update);
+    }
+
+    // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const target = document.querySelector(link.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
+});
