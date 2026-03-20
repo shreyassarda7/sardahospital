@@ -2617,3 +2617,122 @@ textarea.form-input {
     max-width: 420px;
   }
 }
+
+@media (max-width: 768px) {
+  .doctors__grid {
+    gap: var(--sp-4);
+  }
+
+  .doctor-card,
+  .doctor-card--primary,
+  .doctor-card--secondary {
+    display: grid;
+    grid-template-columns: minmax(116px, 36%) minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  .doctor-card__image,
+  .doctor-card--primary .doctor-card__image,
+  .doctor-card--secondary .doctor-card__image {
+    height: 100%;
+    min-height: 100%;
+    aspect-ratio: 4 / 5;
+  }
+
+  .doctor-card__image img {
+    height: 100%;
+  }
+
+  .doctor-card__image--placeholder {
+    font-size: 0.8rem;
+    line-height: 1.35;
+  }
+
+  .doctor-card__content,
+  .doctor-card--secondary .doctor-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+    padding: var(--sp-4);
+  }
+
+  .doctor-card__name {
+    font-size: 1.18rem;
+    line-height: 1.1;
+    margin-bottom: 0;
+  }
+
+  .doctor-card__qualification {
+    font-size: 0.76rem;
+    margin-bottom: 0;
+  }
+
+  .doctor-card__role {
+    font-size: 0.82rem;
+    line-height: 1.4;
+    margin-bottom: 0;
+  }
+
+  .doctor-card__bio {
+    font-size: 0.82rem;
+    line-height: 1.48;
+    margin-bottom: 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
+  }
+
+  .doctor-card__bio--extended {
+    display: none;
+  }
+
+  .doctor-card__highlights {
+    gap: 0.35rem;
+    margin-bottom: 0;
+  }
+
+  .doctor-card__highlight {
+    padding: 0.22rem 0.5rem;
+    font-size: 0.62rem;
+    line-height: 1.25;
+  }
+
+  .doctor-card--primary .doctor-card__highlight:nth-child(n + 3) {
+    display: none;
+  }
+
+  .doctor-card__hours {
+    margin-top: auto;
+    font-size: 0.72rem;
+    line-height: 1.4;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 520px) {
+  .doctor-card,
+  .doctor-card--primary,
+  .doctor-card--secondary {
+    grid-template-columns: 108px minmax(0, 1fr);
+  }
+
+  .doctor-card__content,
+  .doctor-card--secondary .doctor-card__content {
+    padding: 0.85rem;
+  }
+
+  .doctor-card__name {
+    font-size: 1.05rem;
+  }
+
+  .doctor-card__role,
+  .doctor-card__bio {
+    font-size: 0.78rem;
+  }
+
+  .doctor-card__hours {
+    font-size: 0.68rem;
+  }
+}
