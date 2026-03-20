@@ -18,46 +18,50 @@
   <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-552WGVFF51');</script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header role="banner">
 
   <!-- ===== EMERGENCY BAR ===== -->
-  <div class="emergency-bar" id="emergency-bar">
+  <div class="emergency-bar" id="emergency-bar" role="status" aria-live="polite">
     <span class="emergency-bar__icon">🚨</span>
     24/7 Emergency: <a href="tel:+919503062999">+91 95030 62999</a>
   </div>
 
   <!-- ===== STICKY NAVIGATION ===== -->
-  <nav class="navbar" id="navbar">
+  <nav class="navbar" id="navbar" aria-label="Primary navigation">
     <div class="container">
-      <a href="#" class="navbar__logo">
+      <a href="#home" class="navbar__logo">
         <img src="Images/SardaHospitalLogo.jpg" alt="Sarda Hospital Logo" width="48" height="48">
         <div class="navbar__logo-text">
           <span class="navbar__brand-name">Sarda Hospital</span>
           <small>Gynaecology & Obstetrics</small>
         </div>
       </a>
-      <div class="navbar__links" id="nav-links">
-        <a href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#doctors">Doctors</a>
-        <a href="#facilities">Facilities</a>
-        <a href="#packages">Packages</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#blog">Blog</a>
-        <a href="#contact">Contact</a>
-        <a href="#appointment" class="btn btn--primary btn--sm navbar__cta">Book Appointment</a>
-      </div>
-      <button class="navbar__toggle" id="nav-toggle" aria-label="Toggle navigation">
+      <ul class="navbar__links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#doctors">Doctors</a></li>
+        <li><a href="#facilities">Facilities</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#appointment" class="btn btn--primary btn--sm navbar__cta">Book Appointment</a></li>
+      </ul>
+      <button class="navbar__toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-controls="nav-links">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
+  </header>
+  <main id="main-content" tabindex="-1">
 
   <!-- ===== HERO SECTION ===== -->
-  <section class="hero" id="home">
+  <section class="hero" id="home" aria-labelledby="home-title">
     <div class="container">
       <div class="hero__content">
         <div class="hero__badge">🏥 Trusted for 30+ Years in Solapur</div>
-        <h1 class="hero__title">Where Every Woman Finds <span>Care, Comfort & Cure</span></h1>
+        <h1 class="hero__title" id="home-title">Where Every Woman Finds <span>Care, Comfort & Cure</span></h1>
         <p class="hero__tagline">"Where Every Woman Finds Care, Comfort & Cure"</p>
         <div class="hero__translations">
           <span>🇮🇳 मराठी: "जिथे प्रत्येक स्त्रीला मिळते काळजी, आराम आणि उपचार"</span>
@@ -85,14 +89,15 @@
         </div>
       </div>
       <div class="hero__image reveal">
-        <img src="Images/DrKiranSardaConsulting1.jpeg" alt="Dr. Kiran Sarda consulting with a patient at Sarda Hospital, Solapur" width="600" height="500">
+        <img src="Images/DrKiranSardaConsulting1.jpeg" alt="Dr. Kiran Sarda consulting with a patient at Sarda Hospital, Solapur" width="1024" height="768" fetchpriority="high" decoding="async">
       </div>
     </div>
   </section>
 
   <!-- ===== TRUST STRIP ===== -->
-  <div class="trust-strip">
+  <section class="trust-strip" aria-labelledby="trust-strip-title">
     <div class="container">
+      <h2 id="trust-strip-title" class="sr-only">Why families trust Sarda Hospital</h2>
       <div class="trust-strip__item">
         <div class="trust-strip__icon">🏥</div>
         <span class="trust-strip__value" data-count="30">30+</span>
@@ -119,34 +124,34 @@
         <span class="trust-strip__label">Hospital</span>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- ===== HOSPITAL SLIDESHOW ===== -->
-  <section class="slideshow section" id="hospital">
+  <section class="slideshow section" id="hospital" aria-labelledby="hospital-title">
     <div class="container">
       <div class="section__header reveal">
         <span class="section__subtitle">Our Hospital</span>
-        <h2 class="section__title">A Place That Feels Like Home</h2>
+        <h2 class="section__title" id="hospital-title">A Place That Feels Like Home</h2>
         <p class="section__desc">Clean, warm, and welcoming — our hospital has been serving the women of Solapur for over three decades.</p>
       </div>
-      <div class="slideshow__wrapper reveal">
-        <div class="slideshow__slide active"><img src="Images/HospitalFront.JPG" alt="Sarda Hospital building front view" loading="lazy"></div>
-        <div class="slideshow__slide"><img src="Images/HospitalFront2.JPG" alt="Sarda Hospital entrance" loading="lazy"></div>
-        <div class="slideshow__slide"><img src="Images/HospitalFront3.JPG" alt="Sarda Hospital exterior view" loading="lazy"></div>
-        <div class="slideshow__slide"><img src="Images/HospitalFront4.JPG" alt="Sarda Hospital building" loading="lazy"></div>
-        <div class="slideshow__slide"><img src="Images/HospitalFront5.JPG" alt="Sarda Hospital facility" loading="lazy"></div>
-        <div class="slideshow__slide"><img src="Images/HospitalFront6.JPG" alt="Sarda Hospital campus" loading="lazy"></div>
+      <div class="slideshow__wrapper reveal" role="region" aria-roledescription="carousel" aria-label="Hospital photo gallery">
+        <div class="slideshow__slide active"><img src="Images/HospitalFront.JPG" alt="Sarda Hospital building front view" loading="lazy" width="4032" height="3024" decoding="async"></div>
+        <div class="slideshow__slide"><img src="Images/HospitalFront2.JPG" alt="Sarda Hospital entrance" loading="lazy" width="4032" height="3024" decoding="async"></div>
+        <div class="slideshow__slide"><img src="Images/HospitalFront3.JPG" alt="Sarda Hospital exterior view" loading="lazy" width="4032" height="3024" decoding="async"></div>
+        <div class="slideshow__slide"><img src="Images/HospitalFront4.JPG" alt="Sarda Hospital building" loading="lazy" width="4032" height="3024" decoding="async"></div>
+        <div class="slideshow__slide"><img src="Images/HospitalFront5.JPG" alt="Sarda Hospital facility" loading="lazy" width="4032" height="3024" decoding="async"></div>
+        <div class="slideshow__slide"><img src="Images/HospitalFront6.JPG" alt="Sarda Hospital campus" loading="lazy" width="4032" height="3024" decoding="async"></div>
       </div>
-      <div class="slideshow__dots" id="slideshow-dots"></div>
+      <div class="slideshow__dots" id="slideshow-dots" role="group" aria-label="Slideshow controls"></div>
     </div>
   </section>
 
   <!-- ===== SERVICES ===== -->
-  <section class="services section--alt section" id="services">
+  <section class="services section--alt section" id="services" aria-labelledby="services-title">
     <div class="container">
       <div class="section__header reveal">
         <span class="section__subtitle">Our Specialities</span>
-        <h2 class="section__title">Comprehensive Women's Healthcare</h2>
+        <h2 class="section__title" id="services-title">Comprehensive Women's Healthcare</h2>
         <p class="section__desc">Expert care across every stage of a woman's health journey — from adolescence to motherhood and beyond.</p>
       </div>
       <div class="services__grid reveal-stagger">
@@ -195,16 +200,16 @@
   </section>
 
   <!-- ===== DOCTORS ===== -->
-  <section class="doctors section" id="doctors">
+  <section class="doctors section" id="doctors" aria-labelledby="doctors-title">
     <div class="container">
       <div class="section__header reveal">
         <span class="section__subtitle">Meet Our Doctors</span>
-        <h2 class="section__title">Experienced, Compassionate, Trusted</h2>
+        <h2 class="section__title" id="doctors-title">Experienced, Compassionate, Trusted</h2>
       </div>
       <div class="doctors__grid">
         <div class="doctor-card doctor-card--primary reveal">
           <div class="doctor-card__image">
-            <img src="Images/DrKiranSardaConsulting1.jpeg" alt="Dr. Kiran Sarda — Gynaecologist and Obstetrician at Sarda Hospital, Solapur" loading="lazy">
+            <img src="Images/DrKiranSardaConsulting1.jpeg" alt="Dr. Kiran Sarda — Gynaecologist and Obstetrician at Sarda Hospital, Solapur" loading="lazy" width="1024" height="768" decoding="async">
           </div>
           <div class="doctor-card__content">
             <h3 class="doctor-card__name">Dr. Kiran Sarda</h3>
@@ -222,7 +227,7 @@
           </div>
         </div>
         <div class="doctor-card doctor-card--secondary reveal">
-          <div class="doctor-card__image" style="background:var(--clr-bg-warm);display:flex;align-items:center;justify-content:center;color:var(--clr-text-muted);font-size:1rem;text-align:center;padding:var(--sp-4);">
+          <div class="doctor-card__image doctor-card__image--placeholder">
             <span>Photo Coming Soon</span>
           </div>
           <div class="doctor-card__content">
@@ -238,11 +243,11 @@
   </section>
 
   <!-- ===== FACILITIES ===== -->
-  <section class="facilities section--alt section" id="facilities">
+  <section class="facilities section--alt section" id="facilities" aria-labelledby="facilities-title">
     <div class="container">
       <div class="section__header reveal">
         <span class="section__subtitle">Our Facilities</span>
-        <h2 class="section__title">Modern Care in a Warm Setting</h2>
+        <h2 class="section__title" id="facilities-title">Modern Care in a Warm Setting</h2>
         <p class="section__desc">Fully equipped to handle everything from routine consultations to complex surgeries — all under one roof.</p>
       </div>
       <div class="facilities__badges reveal">
@@ -377,11 +382,11 @@
   </section>
 
   <!-- ===== PACKAGES ===== -->
-  <section class="packages section" id="packages">
+  <section class="packages section" id="packages" aria-labelledby="packages-title">
     <div class="container">
       <div class="section__header reveal">
         <span class="section__subtitle">Health Packages</span>
-        <h2 class="section__title">Affordable Care, Transparent Approach</h2>
+        <h2 class="section__title" id="packages-title">Affordable Care, Transparent Approach</h2>
         <p class="section__desc">Comprehensive packages designed around your needs. No hidden costs — call us for personalised pricing.</p>
       </div>
       <div class="packages__grid reveal-stagger">
@@ -439,14 +444,14 @@
   </section>
 
   <!-- ===== REVIEWS ===== -->
-  <section class="reviews section--alt section" id="reviews">
+  <section class="reviews section--alt section" id="reviews" aria-labelledby="reviews-title">
     <div class="container">
       <div class="section__header reveal">
         <span class="section__subtitle">Patient Stories</span>
-        <h2 class="section__title">What Our Patients Say</h2>
+        <h2 class="section__title" id="reviews-title">What Our Patients Say</h2>
       </div>
-      <div class="reviews__carousel reveal" id="reviews-carousel">
-        <div class="reviews__track" id="reviews-track">
+      <div class="reviews__carousel reveal" id="reviews-carousel" role="region" aria-roledescription="carousel" aria-label="Patient review carousel">
+        <div class="reviews__track" id="reviews-track" aria-live="polite">
           <div class="review-card">
             <div class="review-card__stars">★★★★★</div>
             <p class="review-card__text">"Facing a life-threatening cervical pregnancy, I was terrified — but Dr. Kiran Sarda, Dr. Sudeep Sarda and their team handled it with such expertise and compassion. I owe my life to them."</p>
@@ -485,9 +490,9 @@
           </div>
         </div>
       </div>
-      <div class="reviews__controls">
+      <div class="reviews__controls" role="group" aria-label="Review controls">
         <button class="reviews__arrow" id="review-prev" aria-label="Previous review">❮</button>
-        <div class="reviews__dots" id="review-dots"></div>
+        <div class="reviews__dots" id="review-dots" role="group" aria-label="Review navigation"></div>
         <button class="reviews__arrow" id="review-next" aria-label="Next review">❯</button>
       </div>
       <div class="reviews__ratings reveal">
@@ -501,17 +506,17 @@
   </section>
 
   <!-- ===== APPOINTMENT FORM ===== -->
-  <section class="appointment section" id="appointment">
+  <section class="appointment section" id="appointment" aria-labelledby="appointment-title">
     <div class="container">
       <div class="appointment__wrapper">
         <div class="appointment__info reveal">
-          <h2 class="appointment__info-title">Book Your Appointment</h2>
+          <h2 class="appointment__info-title" id="appointment-title">Book Your Appointment</h2>
           <p class="appointment__info-text">Fill out the form and we'll confirm your appointment via WhatsApp or call. For urgent queries, call us directly.</p>
           <div class="appointment__contact-item">
             <div class="appointment__contact-icon">📞</div>
             <div>
               <strong>Call / WhatsApp</strong><br>
-              <a href="tel:+919503062999" style="color:var(--clr-primary)">+91 95030 62999</a>
+              <a href="tel:+919503062999" class="text-link--primary">+91 95030 62999</a>
             </div>
           </div>
           <div class="appointment__contact-item">
@@ -519,7 +524,7 @@
             <div>
               <strong>Visit Us</strong><br>
               Sarda Hospital, Samrat Chowk, Old Hyderabad Rd,<br>New Budhwar Peth, Solapur, Maharashtra 413002
-              <br><a href="https://www.google.com/maps/dir//Sarda+Hospital+Samrat+Chowk+Old+Hyderabad+Rd+New+Budhwar+Peth+Solapur+Maharashtra+413002" target="_blank" rel="noopener" class="btn btn--outline btn--sm" style="margin-top:8px;">📍 Get Directions</a>
+              <br><a href="https://www.google.com/maps/dir//Sarda+Hospital+Samrat+Chowk+Old+Hyderabad+Rd+New+Budhwar+Peth+Solapur+Maharashtra+413002" target="_blank" rel="noopener" class="btn btn--outline btn--sm btn--with-top-space">📍 Get Directions</a>
             </div>
           </div>
           <div class="appointment__contact-item">
@@ -536,19 +541,19 @@
           </div>
         </div>
         <div class="appointment__form reveal" id="appointment-form-wrapper">
-          <form id="appointment-form">
+          <form id="appointment-form" aria-label="Appointment booking form">
             <div class="form-group">
               <label for="patient-name">Full Name <span class="required">*</span></label>
-              <input type="text" id="patient-name" class="form-input" placeholder="Enter your full name" required>
+              <input type="text" id="patient-name" name="patientName" class="form-input" placeholder="Enter your full name" autocomplete="name" required>
             </div>
             <div class="form-group">
               <label for="patient-phone">Phone Number <span class="required">*</span></label>
-              <input type="tel" id="patient-phone" class="form-input" placeholder="+91 XXXXX XXXXX" required>
+              <input type="tel" id="patient-phone" name="patientPhone" class="form-input" placeholder="+91 XXXXX XXXXX" autocomplete="tel" inputmode="tel" required>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label for="preferred-doctor">Preferred Doctor <span class="required">*</span></label>
-                <select id="preferred-doctor" class="form-input" required>
+                <select id="preferred-doctor" name="preferredDoctor" class="form-input" required>
                   <option value="">Select Doctor</option>
                   <option value="Dr. Kiran Sarda (Gynaecologist & Obstetrician)">Dr. Kiran Sarda (Gynaecologist & Obstetrician)</option>
                   <option value="Dr. Sudeep Sarda (Anaesthetist & General Physician — by appointment)">Dr. Sudeep Sarda (Anaesthetist & Physician — by appt.)</option>
@@ -556,7 +561,7 @@
               </div>
               <div class="form-group">
                 <label for="visit-reason">Reason for Visit <span class="required">*</span></label>
-                <select id="visit-reason" class="form-input" required>
+                <select id="visit-reason" name="visitReason" class="form-input" required>
                   <option value="">Select Reason</option>
                   <option value="Pregnancy / Delivery">Pregnancy / Delivery</option>
                   <option value="Gynaecology Issue">Gynaecology Issue</option>
@@ -569,11 +574,11 @@
             <div class="form-row">
               <div class="form-group">
                 <label for="preferred-date">Preferred Date <span class="required">*</span></label>
-                <input type="date" id="preferred-date" class="form-input" required>
+                <input type="date" id="preferred-date" name="preferredDate" class="form-input" autocomplete="off" required>
               </div>
               <div class="form-group">
                 <label for="preferred-time">Preferred Time <span class="required">*</span></label>
-                <select id="preferred-time" class="form-input" required>
+                <select id="preferred-time" name="preferredTime" class="form-input" required>
                   <option value="">Select Time</option>
                   <option value="Morning 11am–1pm">Morning (11 AM – 1 PM)</option>
                   <option value="Afternoon 1pm–4pm">Afternoon (1 PM – 4 PM)</option>
@@ -583,7 +588,7 @@
             </div>
             <div class="form-group">
               <label for="patient-message">Message (Optional)</label>
-              <textarea id="patient-message" class="form-input" placeholder="Tell us anything else we should know..." rows="3"></textarea>
+              <textarea id="patient-message" name="patientMessage" class="form-input" placeholder="Tell us anything else we should know..." rows="3"></textarea>
             </div>
             <div class="form-submit">
               <button type="submit" class="btn btn--primary btn--lg">📅 Book Appointment via WhatsApp</button>
@@ -592,7 +597,7 @@
           <div class="form-confirmation" id="form-confirmation">
             <div class="form-confirmation__icon">✅</div>
             <h3 class="form-confirmation__title">Thank You!</h3>
-            <p class="form-confirmation__text">Your request has been sent to us on WhatsApp.<br>We will call you back to confirm your appointment.<br><br>For urgent queries: <a href="tel:+919503062999" style="color:var(--clr-primary);font-weight:600">+91 95030 62999</a></p>
+            <p class="form-confirmation__text">Your request has been sent to us on WhatsApp.<br>We will call you back to confirm your appointment.<br><br>For urgent queries: <a href="tel:+919503062999" class="text-link--primary-strong">+91 95030 62999</a></p>
           </div>
         </div>
       </div>
@@ -600,11 +605,11 @@
   </section>
 
   <!-- ===== BLOG ===== -->
-  <section class="blog section--alt section" id="blog">
+  <section class="blog section--alt section" id="blog" aria-labelledby="blog-title">
     <div class="container">
       <div class="section__header reveal">
         <span class="section__subtitle">Health Blog</span>
-        <h2 class="section__title">Health Articles & Guidance</h2>
+        <h2 class="section__title" id="blog-title">Health Articles & Guidance</h2>
         <p class="section__desc">Expert-verified health information to help you make informed decisions about your wellbeing.</p>
       </div>
       <div class="blog__grid reveal-stagger">
@@ -634,11 +639,11 @@
   </section>
 
   <!-- ===== GOOGLE MAPS ===== -->
-  <section class="map-section section" id="contact">
+  <section class="map-section section" id="contact" aria-labelledby="contact-title">
     <div class="container">
       <div class="section__header reveal">
         <span class="section__subtitle">Find Us</span>
-        <h2 class="section__title">Visit Sarda Hospital</h2>
+        <h2 class="section__title" id="contact-title">Visit Sarda Hospital</h2>
         <p class="section__desc">Sarda Hospital, Samrat Chowk, Old Hyderabad Rd, New Budhwar Peth, Solapur, Maharashtra 413002</p>
       </div>
       <div class="map-section__wrapper reveal">
@@ -646,6 +651,8 @@
       </div>
     </div>
   </section>
+
+</main>
 
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
@@ -657,7 +664,7 @@
             <span class="footer__logo-text">Sarda Hospital</span>
           </div>
           <p class="footer__tagline">"Where Every Woman Finds Care, Comfort & Cure"</p>
-          <p style="font-size:0.85rem;color:rgba(255,255,255,0.6);">Sarda Hospital, Samrat Chowk, Old Hyderabad Rd,<br>New Budhwar Peth, Solapur, Maharashtra 413002</p>
+          <p class="footer__address">Sarda Hospital, Samrat Chowk, Old Hyderabad Rd,<br>New Budhwar Peth, Solapur, Maharashtra 413002</p>
         </div>
         <div>
           <h4 class="footer__heading">Quick Links</h4>
