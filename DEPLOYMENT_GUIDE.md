@@ -1,166 +1,146 @@
-# Sarda Hospital — Deployment Guide
-*Written for non-technical users. Follow each step in order.*
+# Sarda Hospital Deployment Guide
 
----
+## Summary
 
-## Step 1: Compress Your Images ✅ DONE
+This repo is a static site with two public pages:
 
-Images compressed to WebP format in `Images/WebP/` (~7 MB total, down from ~120 MB). All code references updated.
+- `index.html`
+- `facilities.html`
 
----
+There is no build step. The supported deployment flow is manual static hosting on Netlify.
 
-## Step 2: Set Up Google Analytics 4
+This release is:
 
-This lets you see how many people visit, which sections they view, and how long they stay.
+- Preview first, production later
+- WhatsApp-only for appointment handling
+- Search Console verified with the bundled HTML file
 
-1. Go to **[analytics.google.com](https://analytics.google.com)**
+Do not upload the whole repo. Only deploy the site artifact listed below.
+
+## Deploy Artifact
+
+Upload only these items:
+
+- `index.html`
+- `facilities.html`
+- `css/`
+- `js/`
+- `Images/`
+- `googlee7a42aba99053eb0.html`
+
+Do not upload planning docs, screenshots, transcripts, helper scripts, or other repo-root files.
+
+## Accounts
+
+Use these accounts unless ownership has changed:
+
+| Service | Sign in with | Notes |
+| --- | --- | --- |
+| Netlify | `sardahospital2000@gmail.com` | Hosting account |
+| Google Analytics 4 | `sardahospital2000@gmail.com` | Measurement ID: `G-552WGVFF51` |
+| Google Search Console | `sardahospital2000@gmail.com` | Verification file is included in this repo |
+| Google Business Profile | `sudeepsarda@gmail.com` | Existing business profile, leave as-is |
+| Domain registrar | your current `sardahospital.com` account | Only needed for DNS |
+
+## Step 1: Pre-Preview Checks
+
+Before creating the Netlify preview:
+
+1. Confirm `index.html` and `facilities.html` both include GA4 with measurement ID `G-552WGVFF51`.
+2. Confirm the homepage Google Reviews CTA points to the live Google Maps business listing, not a placeholder.
+3. Confirm `facilities.html` uses its own canonical URL:
+   `https://sardahospital.com/facilities.html`
+4. Confirm `facilities.html` routes users back to homepage anchors for sections such as Services, Packages, and Appointment.
+5. Keep Google Sheets and email disabled in `js/main.js`:
+   - `const GOOGLE_SHEETS_URL = '';`
+   - `const EMAIL_ENDPOINT = '';`
+
+## Step 2: Create The Netlify Preview
+
+1. Open `https://app.netlify.com`
 2. Sign in with `sardahospital2000@gmail.com`
-3. Click **"Start measuring"**
-4. Account name: `Sarda Hospital`
-5. Property name: `sardahospital.com`
-6. Select **India** and **INR**
-7. Choose **Healthcare** industry
-8. Click **Create** → Accept terms
-9. Choose **Web** as platform
-10. Enter `sardahospital.com` as website URL
-11. Stream name: `Main Website`
-12. Click **Create stream**
-13. Copy the **Measurement ID** (starts with `G-`)
-14. Open `index.html` in a text editor
-15. Find this line near the top:
-    ```
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    ```
-16. Remove the `<!--` and `-->` around the two script lines
-17. Replace `G-XXXXXXXXXX` with your Measurement ID (in both places)
-18. Save the file
+3. Create a new site using manual deploy
+4. Drag only the deploy artifact into Netlify
+5. Wait for the preview URL, for example:
+   `random-name-123.netlify.app`
 
-**The custom analytics code is already built in** — it automatically tracks:
-- Which sections visitors look at and for how long
-- Scroll depth (25%, 50%, 75%, 100%)
-- Every button/link click (with section context)
-- Phone and WhatsApp click tracking
-- Form field interactions
-- Session duration
+## Step 3: Preview Smoke Test
 
----
+Open the Netlify preview and verify:
 
-## Step 3: Set Up Google Search Console
+- Homepage loads fully
+- Facilities page loads fully
+- CSS, JS, and images load correctly
+- Hero/nav work correctly
+- Slideshow works
+- Reviews carousel works
+- Map loads
+- Footer links work
+- WhatsApp CTAs open WhatsApp
+- `facilities.html` routes users back to homepage anchors where expected
+- `googlee7a42aba99053eb0.html` is reachable at the site root
 
-This shows which Google searches bring people to your website.
+Do not proceed to production until the preview passes.
 
-1. Go to **[search.google.com/search-console](https://search.google.com/search-console)**
+## Step 4: Production Cutover
+
+After the remaining approved polish work is complete:
+
+1. Open the Netlify site
+2. Go to Domain management
+3. Add:
+   - `sardahospital.com`
+   - `www.sardahospital.com`
+4. Verify DNS settings at the registrar
+5. Enable HTTPS
+6. Turn on Force HTTPS
+7. Confirm both production domains resolve correctly
+
+If nameservers or DNS records were changed previously, still verify them manually before assuming production is ready.
+
+## Step 5: Google Search Console
+
+Use the bundled verification file as the repo-backed verification method.
+
+1. Open `https://search.google.com/search-console`
 2. Sign in with `sardahospital2000@gmail.com`
-3. Click **"Add property"**
-4. Choose **"URL prefix"**
-5. Enter `https://sardahospital.com`
-6. Verify ownership (the easiest way: use the Google Analytics method — it verifies automatically if GA4 is already set up)
+3. Add the URL-prefix property:
+   `https://sardahospital.com`
+4. Choose the HTML file verification option if needed
+5. Confirm this file is publicly reachable:
+   `https://sardahospital.com/googlee7a42aba99053eb0.html`
 
----
+GA-based verification can still work as an alternate method, but do not rely on it as the only path.
 
-## Step 4: Set Up Google Sheets Appointment Logging
+## Step 6: Deferred For This Release
 
-This saves every appointment form submission to a Google Sheet.
+These are intentionally out of scope for the current launch:
 
-1. Go to **[sheets.google.com](https://sheets.google.com)** → Create new spreadsheet
-2. Name it: `Sarda Hospital Appointments`
-3. In Row 1, add headers: `Timestamp | Name | Phone | Doctor | Reason | Date | Time | Message`
-4. Go to **Extensions → Apps Script**
-5. Delete all existing code and paste this:
+- Google Sheets appointment logging
+- Email notifications
+- Any backend or webhook integration
 
-```javascript
-function doPost(e) {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  var data = JSON.parse(e.postData.contents);
-  sheet.appendRow([
-    data.timestamp,
-    data.name,
-    data.phone,
-    data.doctor,
-    data.reason,
-    data.date,
-    data.time,
-    data.message
-  ]);
-  return ContentService.createTextOutput("OK");
-}
-```
+Keep the site on the current WhatsApp-only flow for this release.
 
-6. Click **Deploy → New deployment**
-7. Type: **Web app**
-8. Execute as: **Me**
-9. Who has access: **Anyone**
-10. Click **Deploy** → **Authorize** → Allow
-11. Copy the **Web app URL**
-12. Open `js/main.js` and find:
-    ```
-    const GOOGLE_SHEETS_URL = '';
-    ```
-13. Paste your URL between the quotes
-14. Save
+## Re-Deploying After Changes
 
----
+Whenever production-safe changes are made:
 
-## Step 5: Deploy to Netlify
+1. Return to the Netlify site dashboard
+2. Open the Deploys tab
+3. Upload the deploy artifact only
+4. Re-run the preview smoke test
+5. Promote or re-publish only after verification
 
-1. Go to **[app.netlify.com](https://app.netlify.com)**
-2. Sign up with `sardahospital2000@gmail.com` (use Google sign-in)
-3. You'll see a dotted box saying **"Want to deploy a new site without connecting to Git? Drag and drop your site output folder here"**
-4. Open your `sardahospital_dot_com` folder in File Explorer
-5. Select ALL files and folders (`index.html`, `css/`, `js/`, `Images/`)
-6. Drag them into the Netlify box
-7. Netlify will deploy in ~30 seconds
-8. You'll get a preview URL like `random-name.netlify.app`
-9. **Test everything** on this URL before connecting your domain
+## Production Checklist
 
----
-
-## Step 6: Connect sardahospital.com to Netlify
-
-1. In Netlify dashboard → **Domain settings**
-2. Click **"Add custom domain"**
-3. Enter `sardahospital.com` → Click **Verify**
-4. Netlify will tell you to update your DNS. You have two options:
-
-### Option A: Point Nameservers (Recommended)
-1. Log into **Hostinger** (where your domain is registered)
-2. Go to **Domain → DNS/Nameservers**
-3. Change nameservers to:
-   - `dns1.p08.nsone.net`
-   - `dns2.p08.nsone.net`
-   - `dns3.p08.nsone.net`
-   - `dns4.p08.nsone.net`
-   *(Netlify will show you the exact ones)*
-4. Save → Wait 10-30 minutes for DNS to update
-
-### Option B: A Record (If you want to keep Hostinger DNS)
-1. In Hostinger DNS settings, add an A record:
-   - Name: `@`
-   - Value: `75.2.60.5` *(Netlify's load balancer IP)*
-2. Add a CNAME record:
-   - Name: `www`
-   - Value: `your-site-name.netlify.app`
-
-5. Back in Netlify → Click **"Provision SSL certificate"** (automatic, free)
-6. ✅ Your site is now live at `sardahospital.com`!
-
----
-
-## Step 7: What to Do with JD Omni
-
-After your new site is live and working:
-1. Keep the JD Omni site as a backup (it won't affect anything)
-2. Make sure the JustDial listing links to `sardahospital.com`
-3. Update Dr. Sudeep's email if it's still showing publicly on JustDial
-4. Change the JD Omni password (it was shared publicly before)
-
----
-
-## Step 8: Fix the Google Reviews Link
-
-1. Go to Google Maps
-2. Search "Sarda Hospital Solapur"
-3. Click on "Reviews"
-4. Copy the URL from your browser's address bar
-5. In `index.html`, find the line with `ChIJxxxxxxxxxxxxxxx`
-6. Replace the entire `href` URL with the one you copied
+- [x] GA4 configured on both public pages
+- [x] Homepage reviews CTA no longer uses a placeholder
+- [x] Facilities page has its own canonical URL
+- [x] Search Console verification file included in deploy artifact
+- [ ] Netlify preview created
+- [ ] Preview smoke test passed
+- [ ] Custom domain connected
+- [ ] HTTPS enabled
+- [ ] Force HTTPS enabled
+- [ ] Production smoke test passed

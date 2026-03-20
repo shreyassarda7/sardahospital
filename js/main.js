@@ -228,8 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ===== GOOGLE SHEETS INTEGRATION =====
-    // TODO: Replace with your Google Apps Script Web App URL
-    // Follow DEPLOYMENT_GUIDE.md for setup instructions
+    // Intentionally disabled for the current WhatsApp-only release.
     const GOOGLE_SHEETS_URL = '';
 
     function sendToGoogleSheets(data) {
@@ -247,8 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ===== EMAIL NOTIFICATION =====
-    // TODO: Replace with your EmailJS or Formspree endpoint
-    // Follow DEPLOYMENT_GUIDE.md for setup instructions
+    // Intentionally disabled for the current WhatsApp-only release.
     const EMAIL_ENDPOINT = '';
 
     function sendEmailNotification(data) {

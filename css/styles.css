@@ -493,6 +493,10 @@ textarea {
   line-height: 1.2;
 }
 
+.navbar__brand-name {
+  display: block;
+}
+
 .navbar__logo-text small {
   display: block;
   font-family: var(--ff-body);
@@ -1120,6 +1124,64 @@ body {
 
 .facility-tile__enquire:hover {
   color: var(--clr-white);
+}
+
+.facility-card--heading {
+  grid-column: 1 / -1;
+  margin-top: var(--sp-2);
+}
+
+.facility-card--heading h3 {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--ff-heading);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-semibold);
+  color: var(--clr-text);
+  margin: 0;
+}
+
+.facility-card {
+  background: var(--clr-bg-card);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.facility-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.facility-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--clr-bg-warm);
+}
+
+.facility-card__info {
+  padding: var(--sp-4);
+}
+
+.facility-card__info h4 {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-semibold);
+  color: var(--clr-text);
+  margin-bottom: var(--sp-2);
+}
+
+.facility-card__info p {
+  color: var(--clr-text-light);
+  font-size: var(--fs-small);
+  line-height: 1.6;
+  margin: 0;
 }
 
 @media (max-width: 1024px) {
@@ -1852,4 +1914,312 @@ textarea.form-input {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--clr-primary);
+}
+
+@media (min-width: 769px) {
+  .section,
+  .doctors,
+  .facilities,
+  .packages,
+  .reviews {
+    padding: var(--sp-8) 0;
+  }
+
+  .footer {
+    padding: var(--sp-8) 0 var(--sp-4);
+  }
+
+  .section__header {
+    margin-bottom: var(--sp-6);
+  }
+
+  .section__subtitle {
+    margin-bottom: var(--sp-2);
+  }
+
+  .section__title {
+    margin-bottom: var(--sp-3);
+  }
+
+  .section__title::after {
+    margin-top: var(--sp-3);
+  }
+
+  .section__desc {
+    max-width: 680px;
+  }
+
+  .navbar .container {
+    gap: var(--sp-5);
+  }
+
+  .navbar__logo {
+    gap: var(--sp-2);
+  }
+
+  .navbar__links {
+    gap: var(--sp-4);
+  }
+
+  .navbar__cta {
+    margin-left: var(--sp-2);
+    padding-left: var(--sp-5);
+    padding-right: var(--sp-5);
+  }
+
+  .hero .container {
+    gap: var(--sp-7);
+  }
+
+  .hero__content {
+    padding: var(--sp-7) 0;
+  }
+
+  .hero__badge {
+    margin-bottom: var(--sp-4);
+  }
+
+  .hero__translations {
+    margin-bottom: var(--sp-5);
+  }
+
+  .hero__actions {
+    margin-bottom: var(--sp-6);
+  }
+
+  .hero__stats {
+    gap: var(--sp-5);
+  }
+
+  .doctors__grid {
+    gap: var(--sp-6);
+  }
+
+  .doctor-card__content {
+    padding: var(--sp-5);
+  }
+
+  .doctor-card--secondary .doctor-card__content {
+    padding: var(--sp-4);
+  }
+
+  .doctor-card__role,
+  .doctor-card__bio,
+  .doctor-card__highlights {
+    margin-bottom: var(--sp-3);
+  }
+
+  .packages__grid {
+    gap: var(--sp-4);
+  }
+
+  .package-card {
+    padding: var(--sp-5);
+  }
+
+  .package-card__title {
+    margin-bottom: var(--sp-2);
+  }
+
+  .footer__grid {
+    gap: var(--sp-6);
+    margin-bottom: var(--sp-6);
+  }
+
+  .footer__brand {
+    gap: var(--sp-3);
+  }
+
+  .footer__heading {
+    margin-bottom: var(--sp-3);
+  }
+
+  .footer__links {
+    gap: var(--sp-2);
+  }
+
+  .footer__bottom {
+    padding-top: var(--sp-4);
+  }
+}
+
+@media (min-width: 1024px) {
+  .section,
+  .doctors,
+  .facilities,
+  .packages,
+  .reviews,
+  .blog,
+  .appointment,
+  .map {
+    padding: var(--sp-7) 0;
+  }
+
+  .section__header {
+    margin-bottom: var(--sp-5);
+  }
+
+  .section__title {
+    font-size: clamp(2rem, 2.4vw, 2.45rem);
+    line-height: 1.18;
+    margin-bottom: var(--sp-2);
+  }
+
+  .section__title::after {
+    margin-top: var(--sp-2);
+  }
+
+  .section__desc {
+    max-width: 660px;
+    font-size: 1.05rem;
+    line-height: 1.68;
+  }
+
+  .navbar .container {
+    gap: var(--sp-4);
+  }
+
+  .navbar__logo {
+    gap: var(--sp-2);
+    flex-shrink: 0;
+  }
+
+  .navbar__logo img {
+    height: 46px;
+  }
+
+  .navbar__logo-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    font-size: 1.18rem;
+    line-height: 1.05;
+  }
+
+  .navbar__logo-text small {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    line-height: 1.25;
+  }
+
+  .navbar__links {
+    gap: var(--sp-3);
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .navbar__links a {
+    font-size: 0.82rem;
+  }
+
+  .navbar__cta {
+    margin-left: var(--sp-1);
+    padding: 0.72rem 1.15rem;
+    min-height: 42px;
+    flex-shrink: 0;
+  }
+
+  .doctors__grid {
+    gap: var(--sp-5);
+  }
+
+  .doctor-card {
+    border-radius: 20px;
+  }
+
+  .doctor-card--primary {
+    grid-template-columns: minmax(280px, 0.42fr) minmax(0, 0.58fr);
+  }
+
+  .doctor-card__content {
+    padding: 1.75rem;
+  }
+
+  .doctor-card__name {
+    font-size: clamp(1.75rem, 2vw, 2rem);
+  }
+
+  .doctor-card__role,
+  .doctor-card__bio,
+  .doctor-card__highlights {
+    margin-bottom: var(--sp-3);
+  }
+
+  .doctor-card__bio {
+    font-size: 0.97rem;
+    line-height: 1.62;
+  }
+
+  .doctor-card__hours {
+    font-size: 0.82rem;
+  }
+
+  .packages__grid {
+    gap: var(--sp-4);
+  }
+
+  .package-card {
+    padding: var(--sp-5);
+    border-radius: 18px;
+  }
+
+  .package-card__icon {
+    width: 44px;
+    height: 44px;
+    margin-bottom: var(--sp-3);
+  }
+
+  .package-card__title {
+    font-size: 1.22rem;
+    line-height: 1.3;
+    margin-bottom: var(--sp-2);
+  }
+
+  .package-card__desc {
+    font-size: 0.97rem;
+    line-height: 1.62;
+    margin-bottom: var(--sp-4);
+  }
+
+  .footer {
+    padding: var(--sp-7) 0 var(--sp-4);
+  }
+
+  .footer__grid {
+    grid-template-columns: 1.45fr 0.95fr 0.95fr 1.15fr;
+    gap: var(--sp-5);
+    margin-bottom: var(--sp-5);
+    align-items: start;
+  }
+
+  .footer__brand {
+    max-width: 360px;
+    gap: var(--sp-3);
+  }
+
+  .footer__logo {
+    align-items: flex-start;
+  }
+
+  .footer__logo img {
+    margin-top: 2px;
+  }
+
+  .footer__tagline {
+    max-width: 30ch;
+    line-height: 1.6;
+  }
+
+  .footer__heading {
+    margin-bottom: var(--sp-2);
+  }
+
+  .footer__links a {
+    line-height: 1.5;
+  }
+
+  .footer__bottom {
+    padding-top: var(--sp-3);
+  }
 }
