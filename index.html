@@ -574,25 +574,24 @@
           <p class="appointment__info-text">Fill out the form and we'll confirm your appointment via WhatsApp or call. For urgent queries, call us directly.</p>
           <div class="appointment__contact-item">
             <div class="appointment__contact-icon">📞</div>
-            <div>
-              <strong>Call / WhatsApp</strong><br>
-              <a href="tel:+919503062999" class="text-link--primary">+91 95030 62999</a>
+            <div class="appointment__contact-copy">
+              <strong class="appointment__contact-label">Call / WhatsApp</strong>
+              <a href="tel:+919503062999" class="text-link--primary appointment__contact-value">+91 95030 62999</a>
             </div>
           </div>
           <div class="appointment__contact-item">
             <div class="appointment__contact-icon">📍</div>
-            <div>
-              <strong>Visit Us</strong><br>
-              Sarda Hospital, Samrat Chowk, Old Hyderabad Rd,<br>New Budhwar Peth, Solapur, Maharashtra 413002
-              <br><a href="https://www.google.com/maps/dir//Sarda+Hospital+Samrat+Chowk+Old+Hyderabad+Rd+New+Budhwar+Peth+Solapur+Maharashtra+413002" target="_blank" rel="noopener" class="btn btn--outline btn--sm btn--with-top-space">📍 Get Directions</a>
+            <div class="appointment__contact-copy">
+              <strong class="appointment__contact-label">Visit Us</strong>
+              <span>Sarda Hospital, Samrat Chowk, Old Hyderabad Rd,<br>New Budhwar Peth, Solapur, Maharashtra 413002</span>
+              <a href="https://www.google.com/maps/dir//Sarda+Hospital+Samrat+Chowk+Old+Hyderabad+Rd+New+Budhwar+Peth+Solapur+Maharashtra+413002" target="_blank" rel="noopener" class="btn btn--outline btn--sm btn--with-top-space">📍 Get Directions</a>
             </div>
           </div>
           <div class="appointment__contact-item">
             <div class="appointment__contact-icon">🕐</div>
-            <div>
-              <strong>Consultation Hours</strong><br>
-              11:00 AM – 8:00 PM (Daily)<br>
-              Emergency: 24/7
+            <div class="appointment__contact-copy">
+              <strong class="appointment__contact-label">Consultation Hours</strong>
+              <span>11:00 AM – 8:00 PM (Daily)<br>Emergency: 24/7</span>
             </div>
           </div>
           <div class="appointment__multilingual">
@@ -602,15 +601,17 @@
         </div>
         <div class="appointment__form reveal" id="appointment-form-wrapper">
           <form id="appointment-form" aria-label="Appointment booking form">
-            <div class="form-group">
-              <label for="patient-name">Full Name <span class="required">*</span></label>
-              <input type="text" id="patient-name" name="patientName" class="form-input" placeholder="Enter your full name" autocomplete="name" required>
+            <div class="form-row form-row--contact">
+              <div class="form-group">
+                <label for="patient-name">Full Name <span class="required">*</span></label>
+                <input type="text" id="patient-name" name="patientName" class="form-input" placeholder="Enter your full name" autocomplete="name" required>
+              </div>
+              <div class="form-group">
+                <label for="patient-phone">Phone Number <span class="required">*</span></label>
+                <input type="tel" id="patient-phone" name="patientPhone" class="form-input" placeholder="+91 XXXXX XXXXX" autocomplete="tel" inputmode="tel" required>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="patient-phone">Phone Number <span class="required">*</span></label>
-              <input type="tel" id="patient-phone" name="patientPhone" class="form-input" placeholder="+91 XXXXX XXXXX" autocomplete="tel" inputmode="tel" required>
-            </div>
-            <div class="form-row">
+            <div class="form-row form-row--split">
               <div class="form-group">
                 <label for="preferred-doctor">Preferred Doctor <span class="required">*</span></label>
                 <select id="preferred-doctor" name="preferredDoctor" class="form-input" required>
@@ -631,7 +632,7 @@
                 </select>
               </div>
             </div>
-            <div class="form-row">
+            <div class="form-row form-row--split">
               <div class="form-group">
                 <label for="preferred-date">Preferred Date <span class="required">*</span></label>
                 <input type="date" id="preferred-date" name="preferredDate" class="form-input" autocomplete="off" required>
