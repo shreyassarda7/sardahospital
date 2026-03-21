@@ -67,6 +67,7 @@
           id="hero-rotating-tagline"
           lang="en"
           data-rotation-interval="3200"
+          data-wrap-quotes="true"
           data-line-en="Where Every Woman Finds Care, Comfort & Cure"
           data-line-mr="जिथे प्रत्येक स्त्रीला मिळते काळजी, आराम आणि उपचार"
           data-line-hi="जहाँ हर महिला को मिलती है देखभाल, आराम और इलाज"
@@ -88,7 +89,7 @@
           <span class="hero__stat-label">Years of Service</span>
         </div>
         <div class="hero__stat hero__stat--metric">
-          <span class="hero__stat-value" data-count="5000">5000+</span>
+          <span class="hero__stat-value" data-count="5000">5,000+</span>
           <span class="hero__stat-label">Successful Deliveries</span>
         </div>
         <div class="hero__stat hero__stat--rating">
@@ -215,8 +216,14 @@
           <div class="doctor-card__content">
             <h3 class="doctor-card__name">Dr. Sudeep Sarda</h3>
             <p class="doctor-card__qualification">MBBS, MD</p>
-            <p class="doctor-card__role">Anaesthetist & General Physician</p>
-            <p class="doctor-card__bio">Calm, precise, and dedicated — Dr. Sudeep ensures patient safety during all surgical and obstetric procedures with meticulous care.</p>
+            <p class="doctor-card__role">Anaesthetist, General Physician & Sexologist</p>
+            <p class="doctor-card__bio">Calm, precise, and dedicated — Dr. Sudeep ensures patient safety during all surgical and obstetric procedures with meticulous care. <strong>He also offers private sexology consultation, general consultation, and pediatric checkups for young children.</strong></p>
+            <div class="doctor-card__highlights">
+              <span class="doctor-card__highlight">35+ Years Experience</span>
+              <span class="doctor-card__highlight">50,000+ Anaesthesia Cases</span>
+              <span class="doctor-card__highlight">Sexology Consultation</span>
+              <span class="doctor-card__highlight">General & Pediatric Care</span>
+            </div>
             <div class="doctor-card__actions">
               <a href="#appointment" class="btn btn--primary btn--sm doctor-card__book" data-prefill-doctor="Dr. Sudeep Sarda (Anaesthetist & General Physician — by appointment)">Book Appointment</a>
             </div>
@@ -579,10 +586,15 @@
               <span>11:00 AM – 8:00 PM (Daily)<br>Emergency: 24/7</span>
             </div>
           </div>
-          <div class="appointment__multilingual">
-            🇮🇳 <strong>मराठी:</strong> आम्ही लवकरच तुम्हाला कॉल करून वेळ निश्चित करू<br>
-            🇮🇳 <strong>हिंदी:</strong> हम जल्द ही आपको कॉल करके समय निश्चित करेंगे
-          </div>
+          <p
+            class="appointment__multilingual appointment__multilingual--rotating"
+            id="appointment-rotating-note"
+            lang="en"
+            data-rotation-interval="3400"
+            data-line-en="English: We will call you soon to confirm your appointment time."
+            data-line-mr="मराठी: आम्ही लवकरच तुम्हाला कॉल करून वेळ निश्चित करू"
+            data-line-hi="हिंदी: हम जल्द ही आपको कॉल करके समय निश्चित करेंगे"
+          >English: We will call you soon to confirm your appointment time.</p>
         </div>
         <div class="appointment__form reveal" id="appointment-form-wrapper">
           <form id="appointment-form" aria-label="Appointment booking form">
@@ -613,6 +625,8 @@
                   <option value="Gynaecology Issue">Gynaecology Issue</option>
                   <option value="Infertility">Infertility</option>
                   <option value="General Consultation">General Consultation</option>
+                  <option value="Pediatric Checkup (Young / Children)">Pediatric Checkup (Young / Children)</option>
+                  <option value="Sexology Consultation">Sexology Consultation</option>
                   <option value="Other">Other</option>
                 </select>
               </div>

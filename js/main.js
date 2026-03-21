@@ -115,46 +115,46 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ===== HERO TAGLINE ROTATION =====
-    const rotatingTagline = document.getElementById('hero-rotating-tagline');
-
-    if (rotatingTagline) {
-        const taglineLines = [
-            { text: rotatingTagline.dataset.lineEn?.trim(), lang: 'en' },
-            { text: rotatingTagline.dataset.lineMr?.trim(), lang: 'mr' },
-            { text: rotatingTagline.dataset.lineHi?.trim(), lang: 'hi' }
+    // ===== ROTATING MULTILINGUAL COPY =====
+    function initRotatingCopy(element) {
+        const lines = [
+            { text: element.dataset.lineEn?.trim(), lang: 'en' },
+            { text: element.dataset.lineMr?.trim(), lang: 'mr' },
+            { text: element.dataset.lineHi?.trim(), lang: 'hi' }
         ].filter(line => line.text);
 
-        const rotationDelay = Number.parseInt(rotatingTagline.dataset.rotationInterval || '3200', 10);
-        const fadeDelay = 180;
-        let currentTaglineIndex = 0;
-        let taglineTimer;
+        if (lines.length === 0) return;
 
-        const renderTagline = index => {
-            const nextLine = taglineLines[index];
+        const rotationDelay = Number.parseInt(element.dataset.rotationInterval || '3200', 10);
+        const fadeDelay = 180;
+        const wrapInQuotes = element.dataset.wrapQuotes === 'true';
+        let currentIndex = 0;
+
+        const applyLine = index => {
+            const nextLine = lines[index];
             if (!nextLine) return;
 
-            rotatingTagline.classList.add('is-switching');
+            element.classList.add('is-switching');
 
             window.setTimeout(() => {
-                rotatingTagline.textContent = `"${nextLine.text}"`;
-                rotatingTagline.lang = nextLine.lang;
-                rotatingTagline.classList.remove('is-switching');
+                element.textContent = wrapInQuotes ? `"${nextLine.text}"` : nextLine.text;
+                element.lang = nextLine.lang;
+                element.classList.remove('is-switching');
             }, fadeDelay);
         };
 
-        if (taglineLines.length > 0) {
-            rotatingTagline.textContent = `"${taglineLines[0].text}"`;
-            rotatingTagline.lang = taglineLines[0].lang;
-        }
+        element.textContent = wrapInQuotes ? `"${lines[0].text}"` : lines[0].text;
+        element.lang = lines[0].lang;
 
-        if (taglineLines.length > 1) {
-            taglineTimer = window.setInterval(() => {
-                currentTaglineIndex = (currentTaglineIndex + 1) % taglineLines.length;
-                renderTagline(currentTaglineIndex);
+        if (lines.length > 1) {
+            window.setInterval(() => {
+                currentIndex = (currentIndex + 1) % lines.length;
+                applyLine(currentIndex);
             }, Number.isFinite(rotationDelay) ? rotationDelay : 3200);
         }
     }
+
+    document.querySelectorAll('[data-rotation-interval][data-line-en]').forEach(initRotatingCopy);
 
     // ===== REVIEWS CAROUSEL =====
     const track = document.getElementById('reviews-track');
@@ -230,6 +230,65 @@ document.addEventListener('DOMContentLoaded', () => {
     // ===== APPOINTMENT FORM =====
     const form = document.getElementById('appointment-form');
     const confirmation = document.getElementById('form-confirmation');
+    const doctorSelect = document.getElementById('preferred-doctor');
+    const visitReasonSelect = document.getElementById('visit-reason');
+    const doctorReasonOptions = {
+        default: [
+            'Pregnancy / Delivery',
+            'Gynaecology Issue',
+            'Infertility',
+            'General Consultation',
+            'Pediatric Checkup (Young / Children)',
+            'Sexology Consultation',
+            'Other'
+        ],
+        'Dr. Kiran Sarda (Gynaecologist & Obstetrician)': [
+            'Pregnancy / Delivery',
+            'Gynaecology Issue',
+            'Infertility',
+            'Other'
+        ],
+        'Dr. Sudeep Sarda (Anaesthetist & General Physician — by appointment)': [
+            'General Consultation',
+            'Pediatric Checkup (Young / Children)',
+            'Sexology Consultation',
+            'Other'
+        ]
+    };
+
+    function syncVisitReasonOptions(selectedDoctor = '') {
+        if (!visitReasonSelect) return;
+
+        const availableReasons = doctorReasonOptions[selectedDoctor] || doctorReasonOptions.default;
+        const previousValue = visitReasonSelect.value;
+
+        visitReasonSelect.innerHTML = '';
+
+        const placeholder = document.createElement('option');
+        placeholder.value = '';
+        placeholder.textContent = 'Select Reason';
+        visitReasonSelect.appendChild(placeholder);
+
+        availableReasons.forEach(reason => {
+            const option = document.createElement('option');
+            option.value = reason;
+            option.textContent = reason;
+            visitReasonSelect.appendChild(option);
+        });
+
+        if (availableReasons.includes(previousValue)) {
+            visitReasonSelect.value = previousValue;
+        } else {
+            visitReasonSelect.value = '';
+        }
+    }
+
+    if (doctorSelect && visitReasonSelect) {
+        syncVisitReasonOptions(doctorSelect.value);
+        doctorSelect.addEventListener('change', () => {
+            syncVisitReasonOptions(doctorSelect.value);
+        });
+    }
 
     if (form) {
         // Set minimum date to today
@@ -278,6 +337,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Reset after 10 seconds
             setTimeout(() => {
                 form.reset();
+                if (doctorSelect && visitReasonSelect) {
+                    syncVisitReasonOptions('');
+                }
                 form.style.display = '';
                 if (confirmation) confirmation.classList.remove('show');
             }, 10000);
@@ -285,7 +347,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ===== DOCTOR PREFILL LINKS =====
-    const doctorSelect = document.getElementById('preferred-doctor');
     const doctorPrefillLinks = document.querySelectorAll('[data-prefill-doctor]');
 
     if (doctorSelect && doctorPrefillLinks.length > 0) {

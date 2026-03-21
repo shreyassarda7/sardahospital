@@ -775,78 +775,80 @@ body {
 
 .hero__stats {
   grid-area: stats;
-  display: flex;
-  flex-wrap: nowrap;
-  gap: var(--sp-3);
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--sp-2);
   width: 100%;
-  overflow-x: auto;
-  padding-bottom: var(--sp-1);
-  scrollbar-width: thin;
-  scrollbar-color: rgba(74, 124, 89, 0.35) transparent;
 }
 
 .hero__stat {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  gap: 0.3rem;
-  flex: 1 0 0;
+  gap: 0.2rem;
   min-width: 0;
-  min-height: 102px;
-  padding: 0.95rem 1rem;
+  min-height: 88px;
+  padding: 0.75rem 0.65rem;
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.82);
   border: 1px solid rgba(74, 124, 89, 0.12);
   box-shadow: 0 12px 24px rgba(74, 124, 89, 0.08);
-  text-align: left;
+  text-align: center;
 }
 
 .hero__stat-header {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
+  justify-content: center;
+  gap: 0.35rem;
+  width: 100%;
 }
 
 .hero__stat-logo {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
   flex-shrink: 0;
 }
 
 .hero__stat-source {
-  font-size: 0.82rem;
+  font-size: 0.76rem;
   font-weight: var(--fw-semibold);
   color: var(--clr-text);
 }
 
 .hero__stat-value {
   font-family: var(--ff-heading);
-  font-size: var(--fs-h2);
+  font-size: clamp(1.18rem, 1.85vw, 1.5rem);
   font-weight: var(--fw-bold);
   color: var(--clr-primary);
   display: block;
+  line-height: 1.05;
 }
 
 .hero__stat-label {
-  font-size: 0.76rem;
+  font-size: 0.68rem;
   color: var(--clr-text-muted);
-  line-height: 1.35;
+  line-height: 1.25;
 }
 
 .hero__stat--metric .hero__stat-label {
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
+}
+
+.hero__stat--rating .hero__stat-value {
+  font-size: clamp(1.05rem, 1.65vw, 1.26rem);
 }
 
 .hero__stat--trust .hero__stat-value {
-  font-size: clamp(0.98rem, 1.6vw, 1.12rem);
+  font-size: clamp(0.92rem, 1.25vw, 1.04rem);
   line-height: 1.2;
 }
 
 .hero__stat--trust .hero__stat-label {
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
@@ -1134,6 +1136,11 @@ body {
   margin-bottom: var(--sp-4);
 }
 
+.doctor-card__bio strong {
+  color: var(--clr-text);
+  font-weight: var(--fw-semibold);
+}
+
 .doctor-card__highlights {
   display: flex;
   flex-wrap: wrap;
@@ -1154,7 +1161,8 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-2);
-  margin-bottom: var(--sp-4);
+  margin-top: auto;
+  margin-bottom: var(--sp-3);
 }
 
 .doctor-card__book {
@@ -1167,6 +1175,7 @@ body {
   display: flex;
   align-items: center;
   gap: var(--sp-2);
+  margin-top: 0;
 }
 
 .doctor-card--secondary .doctor-card__content {
@@ -1778,7 +1787,19 @@ body {
   border-radius: var(--radius-md);
   font-size: var(--fs-small);
   color: var(--clr-text-light);
-  line-height: 1.8;
+  line-height: 1.6;
+}
+
+.appointment__multilingual--rotating {
+  display: flex;
+  align-items: center;
+  min-height: 4.35rem;
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.appointment__multilingual--rotating.is-switching {
+  opacity: 0;
+  transform: translateY(6px);
 }
 
 .appointment__form {
@@ -2675,15 +2696,17 @@ textarea.form-input {
     gap: var(--sp-2);
     width: 100%;
     overflow-x: auto;
+    scroll-snap-type: x proximity;
   }
 
   .hero__stat {
-    flex: 0 0 150px;
-    min-height: 96px;
-    padding: 0.8rem 0.85rem;
+    flex: 0 0 132px;
+    min-height: 84px;
+    padding: 0.72rem 0.65rem;
     background: rgba(255, 255, 255, 0.7);
     border: 1px solid rgba(74, 124, 89, 0.12);
     border-radius: var(--radius-md);
+    scroll-snap-align: start;
   }
 
   .hero__stat-header {
@@ -2700,12 +2723,12 @@ textarea.form-input {
   }
 
   .hero__stat-value {
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     line-height: 1.1;
   }
 
   .hero__stat-label {
-    font-size: 0.68rem;
+    font-size: 0.64rem;
     letter-spacing: normal;
     line-height: 1.35;
   }
@@ -3161,6 +3184,10 @@ textarea.form-input {
     line-height: 1.65;
   }
 
+  .appointment__multilingual--rotating {
+    min-height: 5rem;
+  }
+
   .appointment__form {
     padding: var(--sp-4);
     border-radius: 20px;
@@ -3477,7 +3504,7 @@ textarea.form-input {
   }
 
   .doctor-card__hours {
-    margin-top: auto;
+    margin-top: var(--sp-3);
   }
 }
 
