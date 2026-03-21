@@ -1157,15 +1157,21 @@ body {
   position: relative;
   overflow: hidden;
   height: 100%;
-  background: var(--clr-bg-warm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0) 42%),
+    linear-gradient(180deg, #f7f0e3 0%, #efe4d3 100%);
 }
 
 .doctor-card__image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  min-height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  min-height: 0;
 }
 
 .doctor-card__image--placeholder {
@@ -1305,8 +1311,14 @@ body {
 
 .facilities__grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--sp-4);
+}
+
+.facilities__actions {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--sp-6);
 }
 
 .facility-tile {
@@ -1470,7 +1482,7 @@ body {
 
 @media (max-width: 1024px) {
   .facilities__grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -1802,13 +1814,15 @@ body {
 
 .appointment__wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
   gap: var(--sp-8);
-  align-items: start;
+  align-items: stretch;
 }
 
 .appointment__info {
-  padding: var(--sp-6) 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
 }
 
 .appointment__info-title {
@@ -1861,7 +1875,7 @@ body {
 }
 
 .appointment__multilingual {
-  margin-top: var(--sp-6);
+  margin-top: auto;
   padding: var(--sp-4);
   background: var(--clr-primary-bg);
   border-radius: var(--radius-md);
@@ -1888,10 +1902,24 @@ body {
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lg);
   border: 1px solid var(--clr-border);
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+#appointment-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-4);
+  width: 100%;
+  align-content: start;
 }
 
 .form-group {
-  margin-bottom: var(--sp-4);
+  margin-bottom: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group label {
@@ -1933,19 +1961,21 @@ textarea.form-input {
 }
 
 .form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--sp-4);
+  display: contents;
 }
 
 .form-row--contact {
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.95fr);
+  display: contents;
 }
 
-@media (max-width: 600px) {
-  .form-row {
-    grid-template-columns: 1fr;
-  }
+.form-row--split {
+  display: contents;
+}
+
+.form-group--full,
+.form-submit,
+.form-confirmation {
+  grid-column: 1 / -1;
 }
 
 .form-submit {
@@ -1999,7 +2029,13 @@ textarea.form-input {
 
 .blog__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.95fr);
+  gap: var(--sp-5);
+  align-items: stretch;
+}
+
+.blog__aside {
+  display: grid;
   gap: var(--sp-5);
 }
 
@@ -2011,6 +2047,9 @@ textarea.form-input {
   border: 1px solid var(--clr-border);
   position: relative;
   transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .blog-card:hover {
@@ -2019,7 +2058,6 @@ textarea.form-input {
 }
 
 .blog-card--featured {
-  grid-column: span 2;
   display: grid;
   grid-template-columns: minmax(220px, 0.9fr) minmax(0, 1.1fr);
 }
@@ -2058,6 +2096,11 @@ textarea.form-input {
 
 .blog-card__content {
   padding: var(--sp-5);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--sp-2);
 }
 
 .blog-card--featured .blog-card__content {
@@ -2082,10 +2125,11 @@ textarea.form-input {
   font-weight: var(--fw-semibold);
   color: var(--clr-text);
   line-height: 1.4;
+  margin: 0;
 }
 
 .blog-card__excerpt {
-  margin-top: var(--sp-3);
+  margin-top: 0;
   color: var(--clr-text-light);
   font-size: var(--fs-small);
   line-height: 1.65;
@@ -3271,7 +3315,7 @@ textarea.form-input {
   }
 
   .form-group {
-    margin-bottom: var(--sp-3);
+    margin-bottom: 0;
   }
 
   .form-group label {
@@ -3289,15 +3333,8 @@ textarea.form-input {
     min-height: 72px;
   }
 
-  .form-row,
-  .form-row--contact,
-  .form-row--split {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  #appointment-form {
     gap: var(--sp-2);
-  }
-
-  .form-row--contact {
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   }
 
   .form-submit {
@@ -3416,6 +3453,11 @@ textarea.form-input {
   }
 
   .blog__grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-3);
+  }
+
+  .blog__aside {
     gap: var(--sp-3);
   }
 
@@ -3548,6 +3590,7 @@ textarea.form-input {
     min-height: 280px;
     margin: 0;
     border-radius: 0;
+    padding: 1rem 1rem 0;
   }
 
   .doctor-card__image img {
@@ -3607,6 +3650,7 @@ textarea.form-input {
     min-height: 225px;
     margin: 0;
     border-radius: 0;
+    padding: 0.45rem;
   }
 
   .doctor-card__image img {
@@ -3647,6 +3691,7 @@ textarea.form-input {
   .doctor-card--secondary .doctor-card__image {
     height: 225px;
     min-height: 225px;
+    padding: 0.35rem;
   }
 
   .doctor-card__image img {
