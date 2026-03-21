@@ -58,12 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ===== HOSPITAL SLIDESHOW =====
-    const slides = document.querySelectorAll('.slideshow__slide');
-    const dotsContainer = document.getElementById('slideshow-dots');
+    const slideshowWrapper = document.getElementById('hero-carousel');
+    const slides = slideshowWrapper ? slideshowWrapper.querySelectorAll('.slideshow__slide') : [];
+    const dotsContainer = document.getElementById('hero-carousel-dots');
     let currentSlide = 0;
     let slideshowTimer;
 
-    if (slides.length > 0 && dotsContainer) {
+    if (slides.length > 0 && dotsContainer && slideshowWrapper) {
         // Create dots
         slides.forEach((_, i) => {
             const dot = document.createElement('button');
@@ -86,16 +87,21 @@ document.addEventListener('DOMContentLoaded', () => {
             goToSlide((currentSlide + 1) % slides.length);
         }
 
-        // Auto-advance every 4 seconds
-        slideshowTimer = setInterval(nextSlide, 4000);
+        function startSlideshow() {
+            clearInterval(slideshowTimer);
+            slideshowTimer = setInterval(nextSlide, 3200);
+        }
+
+        function stopSlideshow() {
+            clearInterval(slideshowTimer);
+        }
+
+        startSlideshow();
 
         // Pause on hover
-        const wrapper = document.querySelector('.slideshow__wrapper');
-        if (wrapper) {
-            wrapper.addEventListener('mouseenter', () => clearInterval(slideshowTimer));
-            wrapper.addEventListener('mouseleave', () => {
-                slideshowTimer = setInterval(nextSlide, 4000);
-            });
+        if (window.matchMedia('(hover: hover)').matches) {
+            slideshowWrapper.addEventListener('mouseenter', stopSlideshow);
+            slideshowWrapper.addEventListener('mouseleave', startSlideshow);
         }
     }
 
