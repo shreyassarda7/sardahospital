@@ -1062,6 +1062,17 @@ body {
   font-weight: var(--fw-medium);
 }
 
+.doctor-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-4);
+}
+
+.doctor-card__book {
+  min-height: 40px;
+}
+
 .doctor-card__hours {
   font-size: var(--fs-small);
   color: var(--clr-text-muted);
@@ -2853,6 +2864,17 @@ textarea.form-input {
 
   .doctor-card--primary .doctor-card__highlight:nth-child(n + 3) {
     display: none;
+  }
+
+  .doctor-card__actions {
+    gap: 0.4rem;
+    margin-bottom: 0;
+  }
+
+  .doctor-card__book {
+    min-height: 34px;
+    padding: 0.45rem 0.7rem;
+    font-size: 0.68rem;
   }
 
   .doctor-card__hours {

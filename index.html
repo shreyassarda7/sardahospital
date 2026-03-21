@@ -223,6 +223,9 @@
               <span class="doctor-card__highlight">Root-Cause Diagnosis</span>
               <span class="doctor-card__highlight">Health Educator</span>
             </div>
+            <div class="doctor-card__actions">
+              <a href="#appointment" class="btn btn--primary btn--sm doctor-card__book" data-prefill-doctor="Dr. Kiran Sarda (Gynaecologist & Obstetrician)">Book Appointment</a>
+            </div>
             <p class="doctor-card__hours">🕐 Consultation: 11:00 AM – 8:00 PM daily | Emergency: 24/7</p>
           </div>
         </div>
@@ -235,6 +238,9 @@
             <p class="doctor-card__qualification">MBBS, MD</p>
             <p class="doctor-card__role">Anaesthetist & General Physician</p>
             <p class="doctor-card__bio">Calm, precise, and dedicated — Dr. Sudeep ensures patient safety during all surgical and obstetric procedures with meticulous care.</p>
+            <div class="doctor-card__actions">
+              <a href="#appointment" class="btn btn--primary btn--sm doctor-card__book" data-prefill-doctor="Dr. Sudeep Sarda (Anaesthetist & General Physician — by appointment)">Book Appointment</a>
+            </div>
             <p class="doctor-card__hours">🕐 Consultation: 11:00 AM – 8:00 PM daily | Emergency: 24/7</p>
           </div>
         </div>
@@ -396,11 +402,11 @@
             <div class="package-card__icon">🤰</div>
             <div class="package-card__summary-main">
               <h3 class="package-card__title">Normal Delivery Package</h3>
-              <label class="package-card__toggle" for="package-normal-toggle">More Info</label>
+              <label class="package-card__toggle" for="package-normal-toggle" role="button" aria-controls="package-normal-details" aria-expanded="false">More Info</label>
             </div>
             <a href="https://wa.me/919503062999?text=Hello%20Sarda%20Hospital%20I%20would%20like%20to%20know%20more%20about%20the%20Normal%20Delivery%20Package." class="package-card__quick-contact" target="_blank" rel="noopener">WhatsApp</a>
           </div>
-          <div class="package-card__details">
+          <div class="package-card__details" id="package-normal-details">
             <p class="package-card__desc">Antenatal consultations, delivery, postnatal care, and newborn check — everything for a safe, natural birth experience.</p>
             <p class="package-card__includes"><strong>Includes:</strong> Antenatal consultations, labour-room care, delivery support, postnatal guidance, and newborn check.</p>
             <div class="package-card__cta">
@@ -414,11 +420,11 @@
             <div class="package-card__icon">🏥</div>
             <div class="package-card__summary-main">
               <h3 class="package-card__title">C-Section Package</h3>
-              <label class="package-card__toggle" for="package-csection-toggle">More Info</label>
+              <label class="package-card__toggle" for="package-csection-toggle" role="button" aria-controls="package-csection-details" aria-expanded="false">More Info</label>
             </div>
             <a href="https://wa.me/919503062999?text=Hello%20Sarda%20Hospital%20I%20would%20like%20to%20know%20more%20about%20the%20C-Section%20Package." class="package-card__quick-contact" target="_blank" rel="noopener">WhatsApp</a>
           </div>
-          <div class="package-card__details">
+          <div class="package-card__details" id="package-csection-details">
             <p class="package-card__desc">Pre-surgical assessment, caesarean section, anaesthesia, recovery, and postnatal support with full medical team care.</p>
             <p class="package-card__includes"><strong>Includes:</strong> Pre-surgical assessment, operation theatre care, anaesthesia support, recovery monitoring, and postnatal follow-up.</p>
             <div class="package-card__cta">
@@ -432,11 +438,11 @@
             <div class="package-card__icon">💗</div>
             <div class="package-card__summary-main">
               <h3 class="package-card__title">Gynaecology Consultation</h3>
-              <label class="package-card__toggle" for="package-gyn-toggle">More Info</label>
+              <label class="package-card__toggle" for="package-gyn-toggle" role="button" aria-controls="package-gyn-details" aria-expanded="false">More Info</label>
             </div>
             <a href="https://wa.me/919503062999?text=Hello%20Sarda%20Hospital%20I%20would%20like%20to%20know%20more%20about%20the%20Gynaecology%20Consultation%20Package." class="package-card__quick-contact" target="_blank" rel="noopener">WhatsApp</a>
           </div>
-          <div class="package-card__details">
+          <div class="package-card__details" id="package-gyn-details">
             <p class="package-card__desc">Consultation, sonography, basic lab tests, and a personalised treatment plan for your gynaecological concerns.</p>
             <p class="package-card__includes"><strong>Includes:</strong> Consultation, sonography when advised, basic lab guidance, and a personalised treatment plan.</p>
             <div class="package-card__cta">
@@ -450,11 +456,11 @@
             <div class="package-card__icon">👨‍👩‍👧</div>
             <div class="package-card__summary-main">
               <h3 class="package-card__title">Fertility & Family Planning</h3>
-              <label class="package-card__toggle" for="package-fertility-toggle">More Info</label>
+              <label class="package-card__toggle" for="package-fertility-toggle" role="button" aria-controls="package-fertility-details" aria-expanded="false">More Info</label>
             </div>
             <a href="https://wa.me/919503062999?text=Hello%20Sarda%20Hospital%20I%20would%20like%20to%20know%20more%20about%20the%20Fertility%20Package." class="package-card__quick-contact" target="_blank" rel="noopener">WhatsApp</a>
           </div>
-          <div class="package-card__details">
+          <div class="package-card__details" id="package-fertility-details">
             <p class="package-card__desc">Fertility assessment for both partners, hormonal evaluation, and expert guidance on your journey to parenthood.</p>
             <p class="package-card__includes"><strong>Includes:</strong> Fertility assessment, hormonal evaluation, couple guidance, and family-planning consultation.</p>
             <div class="package-card__cta">
@@ -468,11 +474,11 @@
             <div class="package-card__icon">🩺</div>
             <div class="package-card__summary-main">
               <h3 class="package-card__title">Annual Women's Health Screening</h3>
-              <label class="package-card__toggle" for="package-screening-toggle">More Info</label>
+              <label class="package-card__toggle" for="package-screening-toggle" role="button" aria-controls="package-screening-details" aria-expanded="false">More Info</label>
             </div>
             <a href="https://wa.me/919503062999?text=Hello%20Sarda%20Hospital%20I%20would%20like%20to%20know%20more%20about%20the%20Annual%20Health%20Screening%20Package." class="package-card__quick-contact" target="_blank" rel="noopener">WhatsApp</a>
           </div>
-          <div class="package-card__details">
+          <div class="package-card__details" id="package-screening-details">
             <p class="package-card__desc">Pap smear, sonography, hormonal panel, and consultation — preventive care to stay ahead of health concerns.</p>
             <p class="package-card__includes"><strong>Includes:</strong> Consultation, pap smear, sonography, hormonal panel, and preventive review.</p>
             <div class="package-card__cta">
@@ -486,11 +492,11 @@
             <div class="package-card__icon">👶</div>
             <div class="package-card__summary-main">
               <h3 class="package-card__title">Newborn Baby Care</h3>
-              <label class="package-card__toggle" for="package-newborn-toggle">More Info</label>
+              <label class="package-card__toggle" for="package-newborn-toggle" role="button" aria-controls="package-newborn-details" aria-expanded="false">More Info</label>
             </div>
             <a href="https://wa.me/919503062999?text=Hello%20Sarda%20Hospital%20I%20would%20like%20to%20know%20more%20about%20the%20Newborn%20Baby%20Care%20Package." class="package-card__quick-contact" target="_blank" rel="noopener">WhatsApp</a>
           </div>
-          <div class="package-card__details">
+          <div class="package-card__details" id="package-newborn-details">
             <p class="package-card__desc">Neonatal assessment, vaccination guidance, and first-week monitoring — loving care for your newest family member.</p>
             <p class="package-card__includes"><strong>Includes:</strong> Neonatal assessment, first-week monitoring, vaccination guidance, and feeding support.</p>
             <div class="package-card__cta">

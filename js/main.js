@@ -227,6 +227,68 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ===== DOCTOR PREFILL LINKS =====
+    const doctorSelect = document.getElementById('preferred-doctor');
+    const doctorPrefillLinks = document.querySelectorAll('[data-prefill-doctor]');
+
+    if (doctorSelect && doctorPrefillLinks.length > 0) {
+        doctorPrefillLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                const doctorValue = link.getAttribute('data-prefill-doctor');
+                if (!doctorValue) return;
+
+                doctorSelect.value = doctorValue;
+                doctorSelect.dispatchEvent(new Event('change', { bubbles: true }));
+            });
+        });
+    }
+
+    // ===== PACKAGE TOGGLE ENHANCEMENTS =====
+    const packageToggleInputs = Array.from(document.querySelectorAll('.package-card__toggle-input'));
+    const mobilePackages = window.matchMedia('(max-width: 768px)');
+
+    function syncPackageToggle(toggle) {
+        const label = document.querySelector(`label[for="${toggle.id}"]`);
+        if (!label) return;
+
+        const isExpanded = toggle.checked;
+        label.textContent = isExpanded ? 'Less Info' : 'More Info';
+        label.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+    }
+
+    function collapseSiblingPackageToggles(activeToggle) {
+        packageToggleInputs.forEach(toggle => {
+            if (toggle !== activeToggle && toggle.checked) {
+                toggle.checked = false;
+                syncPackageToggle(toggle);
+            }
+        });
+    }
+
+    if (packageToggleInputs.length > 0) {
+        packageToggleInputs.forEach(toggle => {
+            syncPackageToggle(toggle);
+
+            toggle.addEventListener('change', () => {
+                if (mobilePackages.matches && toggle.checked) {
+                    collapseSiblingPackageToggles(toggle);
+                }
+
+                syncPackageToggle(toggle);
+            });
+        });
+
+        const handlePackageViewportChange = () => {
+            packageToggleInputs.forEach(syncPackageToggle);
+        };
+
+        if (typeof mobilePackages.addEventListener === 'function') {
+            mobilePackages.addEventListener('change', handlePackageViewportChange);
+        } else if (typeof mobilePackages.addListener === 'function') {
+            mobilePackages.addListener(handlePackageViewportChange);
+        }
+    }
+
     // ===== GOOGLE SHEETS INTEGRATION =====
     // Intentionally disabled for the current WhatsApp-only release.
     const GOOGLE_SHEETS_URL = '';
