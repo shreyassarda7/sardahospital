@@ -781,6 +781,26 @@ body {
   position: relative;
 }
 
+.hero__carousel {
+  width: 100%;
+}
+
+.hero__carousel-wrapper {
+  max-width: none;
+  margin: 0;
+  aspect-ratio: 4 / 3;
+}
+
+.hero__carousel .slideshow__slide img {
+  border-radius: 0;
+  box-shadow: none;
+  max-height: none;
+}
+
+.hero__carousel-dots {
+  margin-top: var(--sp-4);
+}
+
 .hero__image img {
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lg);
@@ -999,6 +1019,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   min-height: 100%;
 }
 
@@ -2630,6 +2651,14 @@ textarea.form-input {
     object-fit: cover;
   }
 
+  .hero__carousel-wrapper {
+    aspect-ratio: 4 / 3;
+  }
+
+  .hero__carousel .slideshow__slide img {
+    max-height: none;
+  }
+
   .trust-strip {
     padding: var(--sp-5) 0;
   }
@@ -2739,6 +2768,10 @@ textarea.form-input {
 
   .hero__image img {
     max-height: 220px;
+  }
+
+  .hero__carousel .slideshow__slide img {
+    max-height: none;
   }
 
   .services__grid {

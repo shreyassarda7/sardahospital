@@ -88,8 +88,15 @@
           </div>
         </div>
       </div>
-      <div class="hero__image reveal">
-        <img src="Images/DrKiranSardaConsulting1.jpeg" alt="Dr. Kiran Sarda consulting with a patient at Sarda Hospital, Solapur" width="1024" height="768" fetchpriority="high" decoding="async">
+      <div class="hero__image hero__carousel reveal">
+        <div class="slideshow__wrapper hero__carousel-wrapper" role="region" aria-roledescription="carousel" aria-label="Hospital photo gallery">
+          <div class="slideshow__slide active"><img src="Images/WebP/HospitalFront.webp" alt="Sarda Hospital building front view" loading="eager" width="4032" height="3024" fetchpriority="high" decoding="async"></div>
+          <div class="slideshow__slide"><img src="Images/WebP/HospitalFront2.webp" alt="Sarda Hospital entrance" loading="lazy" width="4032" height="3024" decoding="async"></div>
+          <div class="slideshow__slide"><img src="Images/WebP/HospitalFront3.webp" alt="Sarda Hospital exterior view" loading="lazy" width="4032" height="3024" decoding="async"></div>
+          <div class="slideshow__slide"><img src="Images/WebP/HospitalFront4.webp" alt="Sarda Hospital building" loading="lazy" width="4032" height="3024" decoding="async"></div>
+          <div class="slideshow__slide"><img src="Images/WebP/HospitalFront5.webp" alt="Sarda Hospital facility" loading="lazy" width="4032" height="3024" decoding="async"></div>
+        </div>
+        <div class="slideshow__dots hero__carousel-dots" id="slideshow-dots" role="group" aria-label="Slideshow controls"></div>
       </div>
     </div>
   </section>
@@ -123,26 +130,6 @@
         <span class="trust-strip__value">Female-Run</span>
         <span class="trust-strip__label">Hospital</span>
       </div>
-    </div>
-  </section>
-
-  <!-- ===== HOSPITAL SLIDESHOW ===== -->
-  <section class="slideshow section" id="hospital" aria-labelledby="hospital-title">
-    <div class="container">
-      <div class="section__header reveal">
-        <span class="section__subtitle">Our Hospital</span>
-        <h2 class="section__title" id="hospital-title">A Place That Feels Like Home</h2>
-        <p class="section__desc">Clean, warm, and welcoming — our hospital has been serving the women of Solapur for over three decades.</p>
-      </div>
-      <div class="slideshow__wrapper reveal" role="region" aria-roledescription="carousel" aria-label="Hospital photo gallery">
-        <div class="slideshow__slide active"><img src="Images/HospitalFront.JPG" alt="Sarda Hospital building front view" loading="lazy" width="4032" height="3024" decoding="async"></div>
-        <div class="slideshow__slide"><img src="Images/HospitalFront2.JPG" alt="Sarda Hospital entrance" loading="lazy" width="4032" height="3024" decoding="async"></div>
-        <div class="slideshow__slide"><img src="Images/HospitalFront3.JPG" alt="Sarda Hospital exterior view" loading="lazy" width="4032" height="3024" decoding="async"></div>
-        <div class="slideshow__slide"><img src="Images/HospitalFront4.JPG" alt="Sarda Hospital building" loading="lazy" width="4032" height="3024" decoding="async"></div>
-        <div class="slideshow__slide"><img src="Images/HospitalFront5.JPG" alt="Sarda Hospital facility" loading="lazy" width="4032" height="3024" decoding="async"></div>
-        <div class="slideshow__slide"><img src="Images/HospitalFront6.JPG" alt="Sarda Hospital campus" loading="lazy" width="4032" height="3024" decoding="async"></div>
-      </div>
-      <div class="slideshow__dots" id="slideshow-dots" role="group" aria-label="Slideshow controls"></div>
     </div>
   </section>
 
@@ -209,7 +196,7 @@
       <div class="doctors__grid">
         <div class="doctor-card doctor-card--primary reveal">
           <div class="doctor-card__image">
-            <img src="Images/DrKiranSardaConsulting1.jpeg" alt="Dr. Kiran Sarda — Gynaecologist and Obstetrician at Sarda Hospital, Solapur" loading="lazy" width="1024" height="768" decoding="async">
+            <img src="Images/Dr. Kiran Portrait.jpg" alt="Portrait of Dr. Kiran Sarda — Gynaecologist and Obstetrician at Sarda Hospital, Solapur" loading="lazy" width="679" height="679" decoding="async">
           </div>
           <div class="doctor-card__content">
             <h3 class="doctor-card__name">Dr. Kiran Sarda</h3>
@@ -230,8 +217,8 @@
           </div>
         </div>
         <div class="doctor-card doctor-card--secondary reveal">
-          <div class="doctor-card__image doctor-card__image--placeholder">
-            <span>Photo Coming Soon</span>
+          <div class="doctor-card__image">
+            <img src="Images/Dr. Sudeep Portrait.png" alt="Portrait of Dr. Sudeep Sarda — Anaesthetist and General Physician at Sarda Hospital, Solapur" loading="lazy" width="360" height="360" decoding="async">
           </div>
           <div class="doctor-card__content">
             <h3 class="doctor-card__name">Dr. Sudeep Sarda</h3>
