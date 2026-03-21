@@ -729,20 +729,23 @@ body {
 .hero__tagline {
   font-size: var(--fs-body-lg);
   color: var(--clr-text-light);
-  margin-bottom: var(--sp-3);
+  margin-bottom: var(--sp-6);
   font-style: italic;
   font-family: var(--ff-heading);
+  line-height: 1.55;
 }
 
-.hero__translations {
-  font-size: var(--fs-small);
-  color: var(--clr-text-muted);
-  margin-bottom: var(--sp-6);
-  line-height: 1.8;
+.hero__tagline--rotating {
+  display: flex;
+  align-items: center;
+  min-height: 3.6rem;
+  max-width: 40rem;
+  transition: opacity 220ms ease, transform 220ms ease;
 }
 
-.hero__translations span {
-  display: block;
+.hero__tagline--rotating.is-switching {
+  opacity: 0;
+  transform: translateY(6px);
 }
 
 .hero__actions {
@@ -2265,7 +2268,7 @@ textarea.form-input {
     margin-bottom: var(--sp-4);
   }
 
-  .hero__translations {
+  .hero__tagline {
     margin-bottom: var(--sp-5);
   }
 
@@ -2614,13 +2617,8 @@ textarea.form-input {
 
   .hero__tagline {
     font-size: 0.95rem;
-    margin-bottom: var(--sp-2);
-  }
-
-  .hero__translations {
-    font-size: 0.78rem;
-    line-height: 1.55;
     margin-bottom: var(--sp-4);
+    min-height: 4.8rem;
   }
 
   .hero__actions {

@@ -115,6 +115,47 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // ===== HERO TAGLINE ROTATION =====
+    const rotatingTagline = document.getElementById('hero-rotating-tagline');
+
+    if (rotatingTagline) {
+        const taglineLines = [
+            { text: rotatingTagline.dataset.lineEn?.trim(), lang: 'en' },
+            { text: rotatingTagline.dataset.lineMr?.trim(), lang: 'mr' },
+            { text: rotatingTagline.dataset.lineHi?.trim(), lang: 'hi' }
+        ].filter(line => line.text);
+
+        const rotationDelay = Number.parseInt(rotatingTagline.dataset.rotationInterval || '3200', 10);
+        const fadeDelay = 180;
+        let currentTaglineIndex = 0;
+        let taglineTimer;
+
+        const renderTagline = index => {
+            const nextLine = taglineLines[index];
+            if (!nextLine) return;
+
+            rotatingTagline.classList.add('is-switching');
+
+            window.setTimeout(() => {
+                rotatingTagline.textContent = `"${nextLine.text}"`;
+                rotatingTagline.lang = nextLine.lang;
+                rotatingTagline.classList.remove('is-switching');
+            }, fadeDelay);
+        };
+
+        if (taglineLines.length > 0) {
+            rotatingTagline.textContent = `"${taglineLines[0].text}"`;
+            rotatingTagline.lang = taglineLines[0].lang;
+        }
+
+        if (taglineLines.length > 1) {
+            taglineTimer = window.setInterval(() => {
+                currentTaglineIndex = (currentTaglineIndex + 1) % taglineLines.length;
+                renderTagline(currentTaglineIndex);
+            }, Number.isFinite(rotationDelay) ? rotationDelay : 3200);
+        }
+    }
+
     // ===== REVIEWS CAROUSEL =====
     const track = document.getElementById('reviews-track');
     const prevBtn = document.getElementById('review-prev');
