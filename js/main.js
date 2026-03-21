@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function startSlideshow() {
             clearInterval(slideshowTimer);
-            slideshowTimer = setInterval(nextSlide, 3200);
+            slideshowTimer = setInterval(nextSlide, 4200);
         }
 
         function stopSlideshow() {

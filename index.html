@@ -46,11 +46,20 @@
         <li><a href="#reviews">Reviews</a></li>
         <li><a href="#blog">Blog</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="#appointment" class="btn btn--primary btn--sm navbar__cta">Book Appointment</a></li>
+        <li class="navbar__cta-item navbar__cta-item--mobile"><a href="#appointment" class="btn btn--primary btn--sm navbar__cta">Book Appointment</a></li>
       </ul>
-      <button class="navbar__toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-controls="nav-links">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="navbar__utility">
+        <a href="#appointment" class="navbar__desktop-cta" aria-label="Book appointment">
+          <span class="navbar__desktop-cta-icon">+</span>
+          <span class="navbar__desktop-cta-copy">
+            <small>Quick Consult</small>
+            <span>Book Appointment</span>
+          </span>
+        </a>
+        <button class="navbar__toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-controls="nav-links">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
   </header>
@@ -66,7 +75,7 @@
           class="hero__tagline hero__tagline--rotating"
           id="hero-rotating-tagline"
           lang="en"
-          data-rotation-interval="3200"
+          data-rotation-interval="4000"
           data-wrap-quotes="true"
           data-line-en="Where Every Woman Finds Care, Comfort & Cure"
           data-line-mr="जिथे प्रत्येक स्त्रीला मिळते काळजी, आराम आणि उपचार"
@@ -590,11 +599,11 @@
             class="appointment__multilingual appointment__multilingual--rotating"
             id="appointment-rotating-note"
             lang="en"
-            data-rotation-interval="3400"
-            data-line-en="English: We will call you soon to confirm your appointment time."
-            data-line-mr="मराठी: आम्ही लवकरच तुम्हाला कॉल करून वेळ निश्चित करू"
-            data-line-hi="हिंदी: हम जल्द ही आपको कॉल करके समय निश्चित करेंगे"
-          >English: We will call you soon to confirm your appointment time.</p>
+            data-rotation-interval="4400"
+            data-line-en="We will call you soon to confirm your appointment time."
+            data-line-mr="आम्ही लवकरच तुम्हाला कॉल करून वेळ निश्चित करू"
+            data-line-hi="हम जल्द ही आपको कॉल करके समय निश्चित करेंगे"
+          >We will call you soon to confirm your appointment time.</p>
         </div>
         <div class="appointment__form reveal" id="appointment-form-wrapper">
           <form id="appointment-form" aria-label="Appointment booking form">
