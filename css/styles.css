@@ -753,13 +753,42 @@ body {
 }
 
 .hero__stats {
-  display: flex;
-  gap: var(--sp-6);
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-3);
+  width: min(100%, 34rem);
 }
 
 .hero__stat {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  padding: var(--sp-4);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(74, 124, 89, 0.12);
+  box-shadow: 0 12px 24px rgba(74, 124, 89, 0.08);
+  text-align: left;
+}
+
+.hero__stat-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.hero__stat-logo {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.hero__stat-source {
+  font-size: 0.82rem;
+  font-weight: var(--fw-semibold);
+  color: var(--clr-text);
 }
 
 .hero__stat-value {
@@ -771,10 +800,33 @@ body {
 }
 
 .hero__stat-label {
-  font-size: var(--fs-xs);
+  font-size: 0.76rem;
   color: var(--clr-text-muted);
+  line-height: 1.35;
+}
+
+.hero__stat--metric .hero__stat-label {
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.08em;
+}
+
+.hero__trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-3);
+}
+
+.hero__trust-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0.55rem 0.95rem;
+  border-radius: var(--radius-full);
+  background: rgba(74, 124, 89, 0.1);
+  color: var(--clr-primary);
+  font-size: 0.8rem;
+  font-weight: var(--fw-semibold);
 }
 
 .hero__image {
@@ -851,45 +903,10 @@ body {
   }
 
   .hero__stats {
-    justify-content: center;
+    width: 100%;
+    max-width: 32rem;
+    margin-inline: auto;
   }
-}
-
-/* ---------- Trust Strip ---------- */
-.trust-strip {
-  background: var(--clr-primary);
-  color: var(--clr-white);
-  padding: var(--sp-7) 0;
-}
-
-.trust-strip .container {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--sp-5);
-}
-
-.trust-strip__item {
-  text-align: center;
-  padding: var(--sp-3);
-}
-
-.trust-strip__icon {
-  font-size: 1.6rem;
-  margin-bottom: var(--sp-2);
-}
-
-.trust-strip__value {
-  font-family: var(--ff-heading);
-  font-size: var(--fs-h2);
-  font-weight: var(--fw-bold);
-  display: block;
-}
-
-.trust-strip__label {
-  font-size: var(--fs-small);
-  opacity: 0.9;
 }
 
 /* ---------- Hospital Slideshow ---------- */
@@ -2622,26 +2639,61 @@ textarea.form-input {
 
   .hero__stats {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--sp-2);
     width: 100%;
   }
 
   .hero__stat {
-    padding: 0.6rem 0.35rem;
+    min-height: 108px;
+    padding: 0.75rem 0.7rem;
     background: rgba(255, 255, 255, 0.7);
     border: 1px solid rgba(74, 124, 89, 0.12);
     border-radius: var(--radius-md);
   }
 
+  .hero__stat-header {
+    gap: 0.45rem;
+  }
+
+  .hero__stat-logo {
+    width: 20px;
+    height: 20px;
+  }
+
+  .hero__stat-source {
+    font-size: 0.74rem;
+  }
+
   .hero__stat-value {
-    font-size: 1.35rem;
+    font-size: 1.2rem;
     line-height: 1.1;
   }
 
   .hero__stat-label {
     font-size: 0.68rem;
-    letter-spacing: 0.08em;
+    letter-spacing: normal;
+    line-height: 1.35;
+  }
+
+  .hero__stat--metric .hero__stat-label {
+    letter-spacing: 0.06em;
+  }
+
+  .hero__trust-badges {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--sp-2);
+    width: 100%;
+    margin-top: var(--sp-3);
+  }
+
+  .hero__trust-badge {
+    justify-content: center;
+    min-height: 36px;
+    padding: 0.5rem 0.7rem;
+    font-size: 0.74rem;
+    text-align: center;
   }
 
   .hero__image {
@@ -2664,35 +2716,6 @@ textarea.form-input {
 
   .hero__carousel .slideshow__slide img {
     max-height: none;
-  }
-
-  .trust-strip {
-    padding: var(--sp-5) 0;
-  }
-
-  .trust-strip .container {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--sp-3);
-    align-items: stretch;
-  }
-
-  .trust-strip__item {
-    padding: var(--sp-2);
-  }
-
-  .trust-strip__icon {
-    font-size: 1.2rem;
-    margin-bottom: var(--sp-2);
-  }
-
-  .trust-strip__value {
-    font-size: 1.1rem;
-  }
-
-  .trust-strip__label {
-    font-size: 0.72rem;
-    line-height: 1.35;
   }
 
   .section {
@@ -2818,6 +2841,10 @@ textarea.form-input {
   }
 
   .hero__stats {
+    max-width: 420px;
+  }
+
+  .hero__trust-badges {
     max-width: 420px;
   }
 }
