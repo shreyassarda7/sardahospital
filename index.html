@@ -12,20 +12,27 @@
   <meta property="og:url" content="https://sardahospital.com">
   <meta property="og:image" content="Images/HospitalFront.JPG">
   <link rel="canonical" href="https://sardahospital.com">
-  <link rel="stylesheet" href="css/styles.css?v=2.2">
+  <link rel="stylesheet" href="css/styles.css?v=2.3">
   <style>
     .emergency-bar__label-compact,
-    .emergency-bar__pill-text-compact {
+    .emergency-bar__pill-text-compact,
+    .reviews__hub-text-compact {
       display: none;
     }
     @media (max-width: 768px) {
       .emergency-bar__label-full,
-      .emergency-bar__pill-text-full {
+      .emergency-bar__pill-text-full,
+      .reviews__hub-text-full {
         display: none !important;
       }
       .emergency-bar__label-compact,
-      .emergency-bar__pill-text-compact {
+      .emergency-bar__pill-text-compact,
+      .reviews__hub-text-compact {
         display: inline !important;
+      }
+      .btn {
+        white-space: normal !important;
+        text-align: center;
       }
     }
   </style>
@@ -600,8 +607,10 @@
         </div>
 
         <div class="reviews__hub-link">
-          <a href="review.html" class="btn btn--outline btn--sm">
-            📄 Open Standalone Review Hub & Printable Flyer &rarr;
+          <a href="review.html" class="btn btn--outline btn--sm reviews__hub-btn" aria-label="Open Review Hub and Printable Flyer">
+            <span class="reviews__hub-icon">📄</span>
+            <span class="reviews__hub-text-full">Open Standalone Review Hub &amp; Printable Flyer &rarr;</span>
+            <span class="reviews__hub-text-compact">Review Hub &amp; Printable Flyer &rarr;</span>
           </a>
         </div>
       </div>
@@ -725,12 +734,17 @@
       </div>
       <div class="blog__grid reveal-stagger">
         <div class="blog-card blog-card--featured">
-          <span class="blog-card__badge">Featured Soon</span>
-          <div class="blog-card__image">📝</div>
+          <span class="blog-card__badge">Featured Article</span>
+          <div class="blog-card__image">🩺</div>
           <div class="blog-card__content">
-            <p class="blog-card__eyebrow">Women's Health Basics</p>
-            <h3 class="blog-card__title">Understanding PCOS: Symptoms, Causes & What You Can Do</h3>
-            <p class="blog-card__excerpt">A clear guide to common symptoms, diagnosis, lifestyle support, and when to speak to a gynaecologist.</p>
+            <p class="blog-card__eyebrow">Women's Health Basics • 5 Min Read</p>
+            <h3 class="blog-card__title">
+              <a href="blog-pcos.html" class="blog-card__title-link">Understanding PCOS: Symptoms, Causes &amp; What You Can Do</a>
+            </h3>
+            <p class="blog-card__excerpt">A comprehensive, doctor-verified guide on recognizing symptoms early, understanding insulin resistance, practical diet and lifestyle tips, and effective clinical care by Dr. Kiran Sarda.</p>
+            <div class="blog-card__footer">
+              <a href="blog-pcos.html" class="btn btn--outline btn--sm">Read Full Guide &rarr;</a>
+            </div>
           </div>
         </div>
         <div class="blog__aside">
@@ -828,6 +842,6 @@
     <span class="whatsapp-float__tooltip">Chat with us!</span>
   </a>
 
-  <script src="js/main.js?v=2.2"></script>
+  <script src="js/main.js?v=2.3"></script>
 </body>
 </html>
