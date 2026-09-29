@@ -2,10 +2,12 @@
 
 ## Summary
 
-This repo is a static site with two public pages:
+This repo is a static site with public pages:
 
 - `index.html`
 - `facilities.html`
+- `review.html`
+- `sexology-clinic.html`
 
 There is no build step. The supported deployment flow is manual static hosting on Netlify.
 
@@ -23,6 +25,8 @@ Upload only these items:
 
 - `index.html`
 - `facilities.html`
+- `review.html`
+- `sexology-clinic.html`
 - `css/`
 - `js/`
 - `Images/`

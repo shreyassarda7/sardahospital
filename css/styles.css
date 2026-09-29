@@ -457,8 +457,7 @@ textarea {
 .emergency-bar {
   background: var(--clr-emergency);
   color: var(--clr-white);
-  text-align: center;
-  padding: var(--sp-2) var(--sp-4);
+  padding: 0 var(--sp-4);
   font-size: var(--fs-small);
   font-weight: var(--fw-semibold);
   position: fixed;
@@ -469,8 +468,68 @@ textarea {
   height: var(--emergency-height);
   display: flex;
   align-items: center;
-  justify-content: center;
+}
+
+.emergency-bar__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
   gap: var(--sp-2);
+}
+
+.emergency-bar__emergency {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+
+.emergency-bar__label-compact {
+  display: none;
+}
+
+.emergency-bar__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.emergency-bar__pill,
+.emergency-bar__clinic-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: var(--clr-white) !important;
+  text-decoration: none !important;
+  font-size: 0.76rem;
+  font-weight: var(--fw-medium);
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  line-height: 1.2;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.emergency-bar__pill:hover,
+.emergency-bar__pill:focus-visible,
+.emergency-bar__clinic-pill:hover,
+.emergency-bar__clinic-pill:focus-visible {
+  background: #ffffff;
+  color: var(--clr-emergency) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+}
+
+.emergency-bar__pill--review:hover,
+.emergency-bar__pill--review:focus-visible {
+  color: #b45309 !important;
+}
+
+.emergency-bar__pill-text-compact {
+  display: none;
 }
 
 .emergency-bar a {
@@ -2694,10 +2753,36 @@ textarea.form-input {
   }
 
   .emergency-bar {
-    padding-inline: var(--sp-3);
+    padding-inline: var(--sp-2);
     font-size: 0.72rem;
-    gap: 0.35rem;
     line-height: 1.2;
+  }
+
+  .emergency-bar__label-full {
+    display: none;
+  }
+
+  .emergency-bar__label-compact {
+    display: inline;
+  }
+
+  .emergency-bar__pill-text-full {
+    display: none;
+  }
+
+  .emergency-bar__pill-text-compact {
+    display: inline;
+  }
+
+  .emergency-bar__actions {
+    gap: 0.25rem;
+  }
+
+  .emergency-bar__pill,
+  .emergency-bar__clinic-pill {
+    font-size: 0.67rem;
+    padding: 0.15rem 0.45rem;
+    gap: 0.2rem;
   }
 
   .navbar .container {
@@ -3781,6 +3866,914 @@ textarea.form-input {
     border: none;
     box-shadow: 0 12px 22px rgba(74, 124, 89, 0.22);
   }
+}
+
+
+/* ---------- Review Actions & Review Hub ---------- */
+.reviews__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  margin-top: var(--sp-5);
+  margin-bottom: var(--sp-2);
+}
+
+.reviews__platform-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-full);
+  background: var(--clr-white);
+  color: var(--clr-text);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.reviews__platform-link:hover {
+  border-color: var(--clr-primary);
+  color: var(--clr-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Review Hub Page Styles */
+.review-hub {
+  padding-top: var(--sp-6);
+  padding-bottom: var(--sp-10);
+}
+
+.review-hub__header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto var(--sp-8);
+}
+
+.review-hub__header .section__badge {
+  display: inline-block;
+  background: rgba(27, 107, 80, 0.1);
+  color: var(--clr-primary);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-semibold);
+  padding: 0.25rem 0.85rem;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--sp-3);
+}
+
+.review-hub__header h1 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: var(--clr-primary-dark);
+  margin-bottom: var(--sp-3);
+  line-height: 1.25;
+}
+
+.review-hub__header p {
+  color: var(--clr-text-light);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.review-platform-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-6);
+  max-width: 900px;
+  margin: 0 auto var(--sp-10);
+}
+
+.review-platform-card {
+  background: var(--clr-white);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.review-platform-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(27, 107, 80, 0.35);
+}
+
+.review-platform-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+.review-platform-card--google::before {
+  background: linear-gradient(90deg, #4285F4, #EA4335, #FBBC05, #34A853);
+}
+
+.review-platform-card--justdial::before {
+  background: #E85D04;
+}
+
+.review-platform-card__logo-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: var(--clr-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--sp-4);
+  padding: 8px;
+}
+
+.review-platform-card__logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.review-platform-card__title {
+  font-size: 1.35rem;
+  font-weight: var(--fw-bold);
+  color: var(--clr-text);
+  margin-bottom: var(--sp-2);
+}
+
+.review-platform-card__rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-bottom: var(--sp-4);
+}
+
+.review-platform-card__stars {
+  color: #f59e0b;
+  font-size: 1.15rem;
+  letter-spacing: 1px;
+}
+
+.review-platform-card__score {
+  font-weight: var(--fw-bold);
+  color: var(--clr-text);
+  font-size: 0.95rem;
+}
+
+.review-platform-card__count {
+  color: var(--clr-text-light);
+  font-size: 0.85rem;
+}
+
+.review-platform-card__desc {
+  color: var(--clr-text-light);
+  font-size: 0.92rem;
+  margin-bottom: var(--sp-5);
+  line-height: 1.5;
+}
+
+.review-platform-card__cta {
+  width: 100%;
+  margin-bottom: var(--sp-5);
+}
+
+.review-platform-card__cta .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.btn--justdial {
+  background: #E85D04;
+  color: #fff;
+  border: 1px solid #d05303;
+}
+
+.btn--justdial:hover {
+  background: #cc4f00;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(232, 93, 4, 0.3);
+}
+
+.review-platform-card__qr-box {
+  background: var(--clr-bg);
+  border: 1px dashed var(--clr-border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  width: 100%;
+  max-width: 200px;
+  margin-top: auto;
+}
+
+.review-platform-card__qr-img {
+  width: 130px;
+  height: 130px;
+  border-radius: var(--radius-sm);
+  background: #fff;
+  padding: 4px;
+}
+
+.review-platform-card__qr-label {
+  font-size: 0.75rem;
+  color: var(--clr-text-light);
+  font-weight: var(--fw-medium);
+}
+
+.review-platform-card__sublink {
+  font-size: 0.82rem;
+  color: var(--clr-primary);
+  margin-top: var(--sp-3);
+  text-decoration: underline;
+  display: inline-block;
+}
+
+/* 3-Step Guide */
+.review-steps {
+  max-width: 900px;
+  margin: 0 auto var(--sp-10);
+  background: var(--clr-white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--clr-border);
+  padding: var(--sp-8) var(--sp-6);
+  text-align: center;
+}
+
+.review-steps__title {
+  font-size: 1.3rem;
+  color: var(--clr-primary-dark);
+  margin-bottom: var(--sp-6);
+}
+
+.review-steps__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-5);
+  text-align: left;
+}
+
+.review-step-item {
+  display: flex;
+  gap: var(--sp-3);
+  align-items: flex-start;
+}
+
+.review-step-num {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  background: var(--clr-primary);
+  color: #fff;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--fw-bold);
+  font-size: 0.9rem;
+}
+
+.review-step-text h4 {
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+  color: var(--clr-text);
+}
+
+.review-step-text p {
+  font-size: 0.82rem;
+  color: var(--clr-text-light);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ---------- Sexology Clinic Page ---------- */
+.sexology-hero {
+  background: linear-gradient(180deg, rgba(27, 107, 80, 0.05) 0%, rgba(253, 250, 246, 0.8) 100%);
+  padding-top: var(--sp-8);
+  padding-bottom: var(--sp-10);
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.sexology-hero__content {
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.confidentiality-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: var(--fw-semibold);
+  margin-bottom: var(--sp-4);
+}
+
+.sexology-hero__title {
+  font-size: clamp(2rem, 4.5vw, 2.85rem);
+  color: var(--clr-primary-dark);
+  line-height: 1.2;
+  margin-bottom: var(--sp-4);
+}
+
+.sexology-hero__desc {
+  font-size: 1.1rem;
+  color: var(--clr-text-light);
+  line-height: 1.6;
+  margin-bottom: var(--sp-6);
+}
+
+.sexology-hero__actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--sp-5);
+}
+
+.privacy-banner {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid var(--clr-primary);
+  border-radius: var(--radius-md);
+  padding: var(--sp-4) var(--sp-5);
+  margin: var(--sp-6) auto 0;
+  max-width: 680px;
+  text-align: left;
+  display: flex;
+  gap: var(--sp-3);
+  align-items: center;
+}
+
+.privacy-banner__icon {
+  font-size: 1.5rem;
+}
+
+.privacy-banner__text h4 {
+  font-size: 0.95rem;
+  color: var(--clr-primary-dark);
+  margin-bottom: 0.2rem;
+}
+
+.privacy-banner__text p {
+  font-size: 0.82rem;
+  color: var(--clr-text-light);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Conditions Grid */
+.sexology-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-6);
+  margin-top: var(--sp-8);
+}
+
+.sexology-card {
+  background: var(--clr-white);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-6);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
+}
+
+.sexology-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(27, 107, 80, 0.35);
+}
+
+.sexology-card__icon {
+  font-size: 2rem;
+  margin-bottom: var(--sp-3);
+}
+
+.sexology-card__title {
+  font-size: 1.2rem;
+  color: var(--clr-primary-dark);
+  margin-bottom: var(--sp-3);
+}
+
+.sexology-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sexology-card__list li {
+  font-size: 0.88rem;
+  color: var(--clr-text);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  line-height: 1.45;
+}
+
+.sexology-card__list li::before {
+  content: '✓';
+  color: var(--clr-primary);
+  font-weight: bold;
+}
+
+/* Doctor Profile Feature */
+.sexology-doctor {
+  background: var(--clr-white);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-8) var(--sp-6);
+  margin: var(--sp-10) auto;
+  max-width: 860px;
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: var(--sp-8);
+  align-items: center;
+}
+
+.sexology-doctor__media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.sexology-doctor__img {
+  width: 170px;
+  height: 170px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  border: 3px solid var(--clr-primary-light);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--sp-3);
+}
+
+.sexology-doctor__rating {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  color: var(--clr-text);
+  font-weight: var(--fw-semibold);
+  margin-bottom: var(--sp-2);
+}
+
+.sexology-doctor__qr-box {
+  background: var(--clr-bg);
+  border: 1px dashed var(--clr-border);
+  border-radius: var(--radius-md);
+  padding: 6px;
+  margin-top: var(--sp-2);
+}
+
+.sexology-doctor__qr-img {
+  width: 90px;
+  height: 90px;
+  border-radius: var(--radius-xs);
+  background: #fff;
+}
+
+.sexology-doctor__info h3 {
+  font-size: 1.5rem;
+  color: var(--clr-primary-dark);
+  margin-bottom: 0.2rem;
+}
+
+.sexology-doctor__sub {
+  color: var(--clr-primary);
+  font-weight: var(--fw-semibold);
+  font-size: 0.95rem;
+  margin-bottom: var(--sp-3);
+}
+
+.sexology-doctor__bio {
+  color: var(--clr-text-light);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin-bottom: var(--sp-4);
+}
+
+.sexology-doctor__highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: var(--sp-5);
+}
+
+.sexology-doctor__highlight-item {
+  font-size: 0.86rem;
+  color: var(--clr-text);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* FAQ Accordion / Box */
+.sexology-faq {
+  max-width: 800px;
+  margin: var(--sp-10) auto;
+}
+
+.sexology-faq__item {
+  background: var(--clr-white);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-4) var(--sp-5);
+  margin-bottom: var(--sp-3);
+}
+
+.sexology-faq__item h4 {
+  font-size: 1.05rem;
+  color: var(--clr-primary-dark);
+  margin-bottom: var(--sp-2);
+}
+
+.sexology-faq__item p {
+  font-size: 0.9rem;
+  color: var(--clr-text-light);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Doctor card badge on homepage */
+.doctor-card__clinic-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(27, 107, 80, 0.08);
+  border: 1px solid rgba(27, 107, 80, 0.25);
+  color: var(--clr-primary);
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.76rem;
+  font-weight: var(--fw-semibold);
+  margin-top: var(--sp-2);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.doctor-card__clinic-badge:hover {
+  background: var(--clr-primary);
+  color: #fff;
+  border-color: var(--clr-primary);
+}
+
+@media (max-width: 1024px) {
+  .sexology-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .review-platform-grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-5);
+  }
+  .review-steps__grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-4);
+  }
+  .sexology-grid {
+    grid-template-columns: 1fr;
+  }
+  .sexology-doctor {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--sp-5);
+  }
+  .sexology-doctor__highlights {
+    align-items: center;
+  }
+}
+
+
+
+/* Embedded Leave a Review Hub inside Homepage #reviews */
+.reviews__leave-hub {
+  margin-top: var(--sp-8);
+  padding: var(--sp-6);
+  background: var(--clr-white);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+
+.reviews__leave-header {
+  max-width: 600px;
+  margin: 0 auto var(--sp-6);
+}
+
+.reviews__leave-title {
+  font-size: 1.45rem;
+  color: var(--clr-primary-dark);
+  margin-bottom: 0.35rem;
+}
+
+.reviews__leave-desc {
+  font-size: 0.92rem;
+  color: var(--clr-text-light);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.reviews__platform-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-5);
+  margin-bottom: var(--sp-6);
+  text-align: left;
+}
+
+.review-mini-card {
+  background: var(--clr-bg);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  transition: all var(--transition-base);
+  overflow: hidden;
+}
+
+.review-mini-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(27, 107, 80, 0.4);
+}
+
+.review-mini-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+.review-mini-card--google::before {
+  background: linear-gradient(90deg, #4285F4, #EA4335, #FBBC05, #34A853);
+}
+
+.review-mini-card--justdial::before {
+  background: #E85D04;
+}
+
+.review-mini-card--doctor::before {
+  background: linear-gradient(90deg, var(--clr-primary), #E85D04);
+}
+
+.review-mini-card__top {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-3);
+}
+
+.review-mini-card__top h4 {
+  font-size: 1.05rem;
+  margin: 0;
+  color: var(--clr-text);
+  line-height: 1.2;
+}
+
+.review-mini-card__badge {
+  font-size: 0.72rem;
+  color: var(--clr-text-light);
+  display: block;
+}
+
+.review-mini-card__rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  margin-bottom: var(--sp-4);
+  font-size: 0.88rem;
+}
+
+.review-mini-card__rating .stars {
+  color: #f59e0b;
+  letter-spacing: 1px;
+}
+
+.review-mini-card__btn {
+  width: 100%;
+  margin-bottom: var(--sp-4);
+  font-size: 0.85rem;
+  padding: 0.45rem 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.review-mini-card__qr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: auto;
+  background: #fff;
+  border: 1px dashed var(--clr-border);
+  border-radius: var(--radius-sm);
+  padding: 6px;
+}
+
+.review-mini-card__qr img {
+  width: 90px;
+  height: 90px;
+  display: block;
+}
+
+.review-mini-card__qr small {
+  font-size: 0.7rem;
+  color: var(--clr-text-light);
+}
+
+.reviews__hub-link {
+  margin-top: var(--sp-2);
+}
+
+/* Review Hub Page - 3 column update */
+.review-platform-grid--3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-6);
+  max-width: 1100px;
+  margin: 0 auto var(--sp-10);
+}
+
+.review-platform-card--doctor::before {
+  background: linear-gradient(90deg, var(--clr-primary), #E85D04);
+}
+
+@media (max-width: 1024px) {
+  .reviews__platform-grid-3,
+  .review-platform-grid--3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .review-mini-card--doctor,
+  .review-platform-card--doctor {
+    grid-column: span 2;
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .reviews__platform-grid-3,
+  .review-platform-grid--3 {
+    grid-template-columns: 1fr;
+  }
+  .review-mini-card--doctor,
+  .review-platform-card--doctor {
+    grid-column: span 1;
+    max-width: 100%;
+  }
+}
+
+
+/* Distinctive Review Card Styles */
+.review-card-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: var(--fw-semibold);
+  padding: 0.18rem 0.55rem;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--sp-2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.review-card-tag--google {
+  background: rgba(66, 133, 244, 0.12);
+  color: #1d4ed8;
+  border: 1px solid rgba(66, 133, 244, 0.25);
+}
+
+.review-card-tag--hospital {
+  background: rgba(232, 93, 4, 0.12);
+  color: #c2410c;
+  border: 1px solid rgba(232, 93, 4, 0.25);
+}
+
+.review-card-tag--doctor {
+  background: rgba(2, 132, 199, 0.12);
+  color: #0369a1;
+  border: 1px solid rgba(2, 132, 199, 0.25);
+}
+
+.review-platform-card__avatar-wrap {
+  width: 64px;
+  height: 64px;
+  position: relative;
+  margin-bottom: var(--sp-4);
+}
+
+.review-platform-card__avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  border: 3px solid #0284c7;
+  display: block;
+}
+
+.review-platform-card__avatar-badge {
+  position: absolute;
+  bottom: -3px;
+  right: -3px;
+  background: #ffffff;
+  border: 1.5px solid var(--clr-border);
+  border-radius: var(--radius-full);
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.review-platform-card--doctor {
+  border-color: rgba(2, 132, 199, 0.25);
+}
+
+.review-platform-card--doctor::before {
+  background: linear-gradient(90deg, #0284c7, #0d9488) !important;
+}
+
+.review-platform-card--doctor:hover {
+  border-color: #0284c7;
+}
+
+.btn--doctor {
+  background: #0284c7;
+  color: #fff;
+  border: 1px solid #0369a1;
+}
+
+.btn--doctor:hover {
+  background: #0369a1;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+
+/* Mini Cards Distinction in Homepage */
+.review-mini-card--doctor::before {
+  background: linear-gradient(90deg, #0284c7, #0d9488) !important;
+}
+
+.review-mini-card__avatar-wrap {
+  width: 36px;
+  height: 36px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.review-mini-card__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  border: 2px solid #0284c7;
+  display: block;
+}
+
+.review-mini-card__avatar-badge {
+  position: absolute;
+  bottom: -3px;
+  right: -3px;
+  background: #fff;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-full);
+  padding: 1.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (prefers-reduced-motion: reduce) {
