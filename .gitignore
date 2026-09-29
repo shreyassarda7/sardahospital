@@ -1,0 +1,13 @@
+# Deploy artifacts
+dist/
+*.zip
+
+# System & OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Scratch & Logs
+*.log
+__pycache__/
+.pytest_cache/
